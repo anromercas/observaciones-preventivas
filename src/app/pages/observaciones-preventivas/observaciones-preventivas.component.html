@@ -1,0 +1,146 @@
+<div class="row animated zoomIn">
+  <div class="col-md-12">
+      <div class="card card-body">
+          <div class="text-left">
+              <button routerLink="/dashboard" type="button" class="btn btn-rounded btn-outline-warning">
+                  <i class="fa fa-rotate-left"> Atrás</i>
+              </button>
+          </div>
+          <br>
+          <h3 class="box-title m-b-0">Crear Observacion Preventiva <small>Fecha: {{ fecha | date:'dd/MM/yyyy' }} </small></h3>
+          <br>
+          
+          <form [formGroup]="forma" ngNativeValidate (ngSubmit)="crearObservacion()">
+              <div class="row">
+                  <div class="col-md-2">
+                      <label for="usuario">Usuario asignado</label>
+                      <!-- <ng-select [items]="usuarios"
+                                bindValue="_id"
+                                bindLabel="nombre"
+                                dropdownPosition="1"
+                                placeholder="Select user"
+                                [(ngModel)]="usuarioSeleccionado"
+                                formControlName="usuario">
+                        </ng-select>
+                        <p>
+                            Selected user: {{usuarioSeleccionado | json}}
+                        </p> -->
+                      <select  formControlName="usuario" name="estado" class="form-control">
+                          <option *ngFor="let usuario of usuarios" [value]="usuario._id">  {{ usuario.nombre + ' ' + usuario.apellido + ' ' + usuario.segundoapellido }} </option>
+                      </select>
+                  </div>
+                  <div class="col-md-2">
+                      <label for="formulario">Formulario</label>
+                      <select formControlName="formulario" name="estado" class="form-control">
+                          <option value="">-- selecciona una opción --</option>
+                          <option value="HORNO">HORNO</option>
+                          <option value="BARRIDO">BARRIDO</option>
+                          <option value="CALDERAS">CALDERAS</option>
+                          <option value="RECAUCHUTADO">RECAUCHUTADO</option>
+                      </select>
+                  </div>
+                  <div class="col-md-2">
+                      <label for="zona">Zona a revisar</label>
+                      <input formControlName="zona" type="text" name="zona" class="form-control" placeholder="nombre de la zona">
+                  </div>
+                  
+                  <div class="col-md-2">
+                      <label for="fecha">fecha</label>
+                      <div class="input-group date">
+                         
+                          <input formControlName="fecha" type="date" name="fecha" class="form-control" [value]="fecha | date:'dd/MM/yyyy'">
+                         <!--  <input type="text" formControlName="fecha" name="fecha" class="form-control" id="datepicker-autoclose" [value]="fecha | date:'dd/MM/yyyy'"> -->
+                          
+                          <span class="input-group-addon"><i class="icon-calender"></i></span>
+                      </div>
+                  </div>
+                  <div class="col-md-2">
+                      <label for="estado">Repetición</label>
+                      <select formControlName="repeticion" name="repeticion" class="form-control">
+                          <option value="">-- selecciona una opción --</option>
+                          <option value="DIARIO">DIARIO</option>
+                          <option value="SEMANAL">SEMANAL</option>
+                          <option value="MENSUAL">MENSUAL</option>
+                          <option value="ANUAL">ANUAL</option>
+                      </select>
+                  </div>
+                  <div class="col-md-2">
+                    <label for="">Operaciones</label> <br>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fa fa-save"> Guardar</i>
+                      </button>
+                  </div>
+              </div>
+          </form>
+      </div>
+  </div>
+</div>
+
+<div class="row animated bounceInDown">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-body">
+  
+          <input (keyup)="buscarObservacion( input.value )" #input type="text" class="form-control" placeholder="Buscar tarea...">
+  
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="row animated bounceInRight" *ngIf="cargando">
+    <div class="col-sm-12">
+      <div class="alert alert-warning text-center">
+        <strong>Cargando</strong>
+        <br>
+        <i class="fa fa-refresh fa-spin fa-2x"></i>
+        <br>
+        <span>Espere por favor</span>
+      </div>
+    </div>
+  </div>
+  
+  <div class="row animated fadeIn" *ngIf="!cargando">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-body">
+    
+            <h3 class="cardtitle">Total tareas( <small> {{ totalRegistros }} </small> ) </h3>
+  
+            <table class="table table-hover" >
+              <thead>
+                <tr>
+                  <th>Usuario Asigando</th>
+                  <th>Formulario</th>
+                  <th>Zona</th>
+                  <th>Fecha</th>
+                  <th>Repetición</th>
+                  <th>Operaciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let observacion of observaciones" >
+                  <td> {{ observacion.usuario.nombre + ' ' + observacion.usuario.apellido + ' ' + observacion.usuario.segundoapellido }} </td>
+                  <td> {{ observacion.formulario }} </td>
+                  <td> {{ observacion.zona }} </td>
+                  <td> {{ observacion.fecha | date:'dd/MM/yyyy' }} </td>
+                  <td> {{ observacion.repeticion }} </td>
+                  <td>
+                      <button (click)="borrarObservacion( observacion )" type="submit" class="btn btn-danger" style="margin: 10px">
+                          <i class="fa fa-trash"></i>
+                      </button>
+
+                      <button (click)="validarObservacion( observacion )" type="submit" class="btn btn-success">
+                          <i class="fa fa-check"></i>
+                      </button>
+
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+              <button (click)="cambiarDesde(-5)" class="btn btn-secondary">Anteriores</button>
+              <button (click)="cambiarDesde(5)" class="btn btn-secondary">Siguientes</button>
+          </div>
+        </div>
+      </div>
+    </div>
