@@ -15,18 +15,38 @@ export class ObservacionesPreventivasService {
     public http: HttpClient
   ) { }
 
-  cargarObservaciones(desde: number = 0) {
-    let url = URL_SERVICIOS + '/observacionespreventivas?desde=' + desde;
+  cargarObservacionesPendienteRealizar(desde: number = 0) {
+    let url = URL_SERVICIOS + '/observacionespreventivas/estado/Pendiente Realizar?desde=' + desde;
+    return this.http.get( url );
+  }
+
+  cargarObservacionesPendienteAprobacion(desde: number = 0) {
+    let url = URL_SERVICIOS + '/observacionespreventivas/estado/Pendiente Aprobacion?desde=' + desde;
+    return this.http.get( url );
+  }
+
+  cargarObservacionesAprobadas(desde: number = 0) {
+    let url = URL_SERVICIOS + '/observacionespreventivas/estado/Aprobada?desde=' + desde;
+    return this.http.get( url );
+  }
+
+  cargarObservacionesRechazadas(desde: number = 0) {
+    let url = URL_SERVICIOS + '/observacionespreventivas/estado/Rechazada?desde=' + desde;
     return this.http.get( url );
   }
 
   cargarMisObservaciones(desde: number = 0, usuario: Usuario) {
-    let url = URL_SERVICIOS + '/observacionespreventivas/' + usuario._id + '?desde=' + desde;
+    let url = URL_SERVICIOS + '/observacionespreventivas/mis-observaciones/' + usuario._id + '?desde=' + desde;
+    return this.http.get( url );
+  }
+
+  obtenerObservacion( id: string ) {
+    let url = URL_SERVICIOS + '/observacionespreventivas/observacion/' + id;
     return this.http.get( url );
   }
 
   validarObservacion(observacion: ObservacionesPreventivas) {
-    let url = URL_SERVICIOS + '/observacionespreventivas/' + observacion._id;
+    let url = URL_SERVICIOS + '/observacionespreventivas/validar/' + observacion._id;
 
     return this.http.put( url, observacion )
                     .map( () => {

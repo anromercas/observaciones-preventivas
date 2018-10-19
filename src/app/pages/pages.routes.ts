@@ -22,7 +22,8 @@ const pagesRoutes: Routes = [
             // Mantenimiento
             { path: 'usuarios', component: UsuariosComponent, data: { titulo: 'Mantenimiento de Usuarios' } },
             { path: 'observaciones', component: ObservacionesPreventivasComponent, data: { titulo: 'Observaciones Preventivas' } },
-            { path: 'misobservaciones', component: MisObservacionesComponent, data: { titulo: 'Mis Observaciones Preventivas' } },
+            { path: 'mis-observaciones', component: MisObservacionesComponent, data: { titulo: 'Mis Observaciones Preventivas' } },
+            { path: 'observaciones/:observacion', component: MisObservacionesComponent, data: { titulo: 'Crear Observaciones Preventivas' } },
             { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
         ]
     }

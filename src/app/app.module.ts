@@ -17,6 +17,7 @@ import { RegisterComponent } from './login/register.component';
 
 // Servicios
 import { ServiceModule } from './services/service.module';
+import { CrearObservacionComponent } from './pages/observaciones-preventivas/crear-observacion.component';
 
 
 
@@ -25,7 +26,8 @@ import { ServiceModule } from './services/service.module';
   declarations: [
     AppComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    CrearObservacionComponent
   ],
   imports: [
     BrowserModule,

@@ -13,7 +13,7 @@ declare var swal: any;
 export class MisObservacionesComponent implements OnInit {
 
   observaciones: ObservacionesPreventivas[] = [];
-  observacion: ObservacionesPreventivas = new ObservacionesPreventivas('', '', '', '', '');
+  observacion: ObservacionesPreventivas = new ObservacionesPreventivas('', '', '', '', '', '');
   cargando: boolean = true;
   totalRegistros: number = 0;
   desde: number = 0;
