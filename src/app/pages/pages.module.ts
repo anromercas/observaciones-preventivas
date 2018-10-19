@@ -28,6 +28,7 @@ import { Graficas1Component } from './graficas1/graficas1.component';
 import { ChartsModule } from 'ng2-charts';
 import { GraficoDonaComponent } from '../components/grafico-dona/grafico-dona.component';
 import { MisObservacionesComponent } from './observaciones-preventivas/mis-observaciones.component';
+import { ObservacionComponent } from './observaciones-preventivas/observacion.component';
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import { MisObservacionesComponent } from './observaciones-preventivas/mis-obser
         ObservacionesPreventivasComponent,
         MisObservacionesComponent,
         Graficas1Component,
-        GraficoDonaComponent
+        GraficoDonaComponent,
+        ObservacionComponent
     ],
     exports: [
         PagesComponent,

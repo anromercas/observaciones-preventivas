@@ -18,6 +18,9 @@ export class ObservacionesPreventivasComponent implements OnInit {
 
   observacion: ObservacionesPreventivas = new ObservacionesPreventivas('', '', '', '', '', '');
 
+  observaciones: ObservacionesPreventivas[] = [];
+
+
   observacionesPendienteAprobacion: ObservacionesPreventivas[] = [];
   observacionesPendienteRealizar: ObservacionesPreventivas[] = [];
   observacionesAprobadas: ObservacionesPreventivas[] = [];
@@ -27,11 +30,13 @@ export class ObservacionesPreventivasComponent implements OnInit {
   usuarioSeleccionado: any;
   totalUsuarios: number = 0;
 
+  cargando: boolean = true;
   cargandoPendienteAprobacion: boolean = true;
   cargandoPendienteRealizar: boolean = true;
   cargandoAprobadas: boolean = true;
   cargandoRechazadas: boolean = true;
 
+  totalRegistros: number = 0;
   totalRegistrosPendienteRealizar: number = 0;
   totalRegistrosPendienteAprobar: number = 0;
   totalRegistrosAprobadas: number = 0;
@@ -54,17 +59,13 @@ export class ObservacionesPreventivasComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.cargarObservaciones();
     this.cargarObservacionesPendienteAprobacion();
     this.cargarObservacionesPendienteRealizar();
     this.cargarObservacionesAprobadas();
     this.cargarObservacionesRechazadas();
     this.cargarUsuarios();
-    console.log(this.fechaHoy);
-    console.log(this.observacionesPendienteRealizar);
-    console.log(this.observacionesPendienteAprobacion);
-    console.log(this.usuarios);
-    console.log(this.observacionesAprobadas);
-    console.log(this.observacionesRechazadas);
+
 
     this.forma = new FormGroup({
       usuario: new FormControl(null, Validators.required),
@@ -90,11 +91,23 @@ export class ObservacionesPreventivasComponent implements OnInit {
     }); */
   }
 
+  cargarObservaciones() {
+    this.cargando = true;
+    this._observacionesService.cargarObservaciones( this.desde )
+                        .subscribe( (resp: any) => {
+                          this.totalRegistros = resp.total;
+                          this.observaciones = resp.observaciones;
+                          this.cargando = false;
+                        });
+
+  }
+
   cambiarDesde( valor: number, estado: string ) {
     let desdePendienteAprobacion = this.desdePendieteAprobacion + valor;
     let desdePendienteRealizar = this.desdePendienteRealizar + valor;
     let desdeAprobada = this.desdeAprobada + valor;
     let desdeRechazada = this.desdeRechazada + valor;
+    let desde = this.desde + valor;
 
     switch (estado) {
       case 'Pendiente Aprobacion':
@@ -131,6 +144,14 @@ export class ObservacionesPreventivasComponent implements OnInit {
 
         this.desdeRechazada += valor;
         this.cargarObservacionesRechazadas();
+      break;
+
+      default:
+        if ( desde >= this.totalRegistros ) { return; }
+        if ( desde < 0 ) { return; }
+
+        this.desde += valor;
+        this.cargarObservaciones();
       break;
 
     }
@@ -181,7 +202,6 @@ export class ObservacionesPreventivasComponent implements OnInit {
     this._observacionesService.cargarObservacionesPendienteRealizar( this.desde )
                         .subscribe( (resp: any) => {
                           this.totalRegistrosPendienteRealizar = resp.total;
-                          console.log(resp.observaciones);
                           this.observacionesPendienteRealizar = resp.observaciones;
                           this.cargandoPendienteRealizar = false;
                         });
@@ -192,7 +212,6 @@ export class ObservacionesPreventivasComponent implements OnInit {
     this._observacionesService.cargarObservacionesPendienteAprobacion( this.desde )
                         .subscribe( (resp: any) => {
                           this.totalRegistrosPendienteAprobar = resp.total;
-                          console.log(resp);
                           this.observacionesPendienteAprobacion = resp.observaciones;
                           this.cargandoPendienteAprobacion = false;
                         });

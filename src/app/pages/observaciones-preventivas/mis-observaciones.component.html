@@ -11,14 +11,14 @@
 </div>
 
 <div class="row animated fadeIn" *ngIf="!cargando">
-  <div class="col-12">
+  <div class="col-xl-auto col-lg-auto col-md-12 col-sm-12">
     <div class="card">
       <div class="card-body">
 
         <h3 class="cardtitle">Total tareas( <small> {{ totalRegistros }} </small> )  de {{ usuario.nombre + ' ' + usuario.apellido + ' ' +
           usuario.segundoapellido }}</h3>
 
-        <table class="table table-hover">
+        <table class="table table-hover table-striped table-responsive table-responsive-lg">
           <thead>
             <tr>
               <th>Usuario Asigando</th>

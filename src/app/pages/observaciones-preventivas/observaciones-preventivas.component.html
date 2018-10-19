@@ -1,76 +1,97 @@
 <!-- 
 =====================================================================
-formulario Creación Observacion preventiva
+Total tareas 
 ===================================================================== 
 -->
 
-<div class="row animated zoomIn">
-    <div class="col-md-12">
-        <div class="card card-body bg-info text-white">
-            <div class="text-left">
-                <button routerLink="/dashboard" type="button" class="btn btn-rounded btn-outline-warning">
-                    <i class="fa fa-rotate-left"> Atrás</i>
-                </button>
-            </div>
-            <br>
-            <h3 class="box-title m-b-0 card-title text-white">Crear Observacion Preventiva <small>Fecha: {{ fecha |
-                    date:'dd/MM/yyyy' }} </small></h3>
-            <br>
-
-            <form [formGroup]="forma" ngNativeValidate (ngSubmit)="crearObservacion()">
-                <div class="row">
-                    <div class="col-md-2">
-                        <label for="usuario">Usuario asignado</label>
-                        <select formControlName="usuario" name="estado" class="form-control">
-                            <option *ngFor="let usuario of usuarios" [value]="usuario._id"> {{ usuario.nombre + ' ' +
-                                usuario.apellido + ' ' + usuario.segundoapellido }} </option>
-                        </select>
-                    </div>
-                    <div class="col-md-2">
-                        <label for="formulario">Formulario</label>
-                        <select formControlName="formulario" name="estado" class="form-control">
-                            <option value="">-- selecciona una opción --</option>
-                            <option value="HORNO">HORNO</option>
-                            <option value="BARRIDO">BARRIDO</option>
-                            <option value="CALDERAS">CALDERAS</option>
-                            <option value="RECAUCHUTADO">RECAUCHUTADO</option>
-                        </select>
-                    </div>
-                    <div class="col-md-2">
-                        <label for="zona">Zona a revisar</label>
-                        <input formControlName="zona" type="text" name="zona" class="form-control" placeholder="nombre de la zona">
-                    </div>
-
-                    <div class="col-md-2">
-                        <label for="fecha">fecha</label>
-                        <div class="input-group date">
-
-                            <input formControlName="fecha" type="date" name="fecha" class="form-control" [value]="fecha | date:'dd/MM/yyyy'">
-
-                            <span class="input-group-addon"><i class="icon-calender"></i></span>
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <label for="estado">Repetición</label>
-                        <select formControlName="repeticion" name="repeticion" class="form-control">
-                            <option value="">-- selecciona una opción --</option>
-                            <option value="DIARIO">DIARIO</option>
-                            <option value="SEMANAL">SEMANAL</option>
-                            <option value="MENSUAL">MENSUAL</option>
-                            <option value="ANUAL">ANUAL</option>
-                        </select>
-                    </div>
-                    <div class="col-md-2">
-                        <label for="">Operaciones</label> <br>
-                        <button type="submit" class="btn btn-primary">
-                            <i class="fa fa-save"> Guardar</i>
-                        </button>
-                    </div>
+<div class="row animated bounceInDown">
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+    
+                    <input (keyup)="buscarObservacion( input.value )" #input type="text" class="form-control" placeholder="Buscar tarea...">
+    
                 </div>
-            </form>
+            </div>
         </div>
     </div>
-</div>
+    
+     <div class="row animated bounceInRight" *ngIf="cargando">
+        <div class="col">
+            <div class="alert alert-warning text-center">
+                <strong>Cargando</strong>
+                <br>
+                <i class="fa fa-refresh fa-spin fa-2x"></i>
+                <br>
+                <span>Espere por favor</span>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row animated fadeIn" *ngIf="!cargando">
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+
+                        <div class="text-right">
+                                <button [routerLink]="['/observacion','nuevo']" type="button" class="btn waves-effect waves-light btn-rounded btn-primary">
+                                <i class="fa fa-plus"></i> 
+                                Crear Observacion Preventiva
+                              </button>
+                            </div>
+    
+                    <h3 class="cardtitle">Total tareas ( <small> {{ totalRegistros
+                            }} </small> ) </h3>
+    
+                    <table class="table table-hover table-striped table-responsive">
+                        <thead>
+                            <tr>
+                                <th>Fecha creación</th>
+                                <th>Usuario Asigando</th>
+                                <th>Formulario</th>
+                                <th>Zona</th>
+                                <th>Fecha</th>
+                                <th>Repetición</th>
+                                <th>Estado</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let observacion of observaciones">
+                                <td> {{ observacion.fechacreacion | date:'dd/MM/yyyy' }} </td>
+                                <td> {{ observacion.usuario.nombre + ' ' +
+                                    observacion.usuario.apellido + ' ' +
+                                    observacion.usuario.segundoapellido }} </td>
+                                <td> {{ observacion.formulario }} </td>
+                                <td> {{ observacion.zona }} </td>
+                                <td> {{ observacion.fecha | date:'dd/MM/yyyy' }} </td>
+                                <td> {{ observacion.repeticion }} </td>
+                                <td class="badge badge-warning"> {{ observacion.estado }} </td>
+                                <td>
+                                    <button (click)="borrarObservacion( observacion )" type="submit" class="btn btn-danger"
+                                        style="margin: 10px">
+                                        <i class="fa fa-trash"> Borrar</i>
+                                    </button>
+    
+                                    <button [routerLink]="['/observacion/', observacion._id ]" class="btn btn-warning" style="margin: 10px">
+                                        <i class="fa fa-edit"> Editar</i>
+                                      </button>
+    
+                                    <button (click)="validarObservacion( observacionPendienteRealizar )" type="submit" class="btn btn-success" style="margin: 10px">
+                                        <i class="fa fa-check"> Validar</i>
+                                    </button>
+    
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <button (click)="cambiarDesde(-5, 'Pendiente Realizar')" class="btn btn-secondary">Anteriores</button>
+                    <button (click)="cambiarDesde(5, 'Pendiente Realizar')" class="btn btn-secondary">Siguientes</button>
+                </div>
+            </div>
+        </div>
+    </div> 
+
 
 <!-- 
 =====================================================================
@@ -178,14 +199,14 @@ Total tareas Pendiente Aprobacion
 </div>
 
 <div class="row animated fadeIn" *ngIf="!cargandoPendienteAprobacion">
-    <div class="col-lg-6 col-md-10 col-sm-12">
+    <div class="col-xl-8 col-lg-9 col-md-10 col-sm-12">
         <div class="card">
             <div class="card-body">
 
                 <h3 class="cardtitle">Total tareas Pentientes de Aprobacion( <small> {{
                         totalRegistrosPendienteAprobar }} </small> ) </h3>
 
-                <table class="table table-hover table-striped table-sm-12 table-responsive">
+                <table class="table table-hover table-striped table-sm-12 table-md-12 table-lg-12 table-responsive table-responsive-lg">
                     <thead>
                         <tr>
                             <th scope="row">Fecha creación</th>
@@ -210,19 +231,20 @@ Total tareas Pendiente Aprobacion
                             <td> {{ observacionPendienteAprobacion.repeticion }} </td>
                             <td class="badge badge-primary"> {{ observacionPendienteAprobacion.estado }} </td>
                             <td>
+                                <div>
                                 <button (click)="borrarObservacion( observacionPendienteAprobacion )" type="submit" class="btn btn-danger"
-                                    style="margin: 10px">
-                                    <i class="fa fa-trash"></i>
+                                    style="margin: 2px">
+                                    <i class="fa fa-trash"> Borrar</i>
                                 </button>
 
-                                <button [routerLink]="['/observacion/', observacion._id ]" class="btn btn-warning">
-                                    <i class="fa fa-edit"></i>
+                                <button [routerLink]="['/observacion/', observacion._id ]" class="btn btn-warning" style="margin: 2px">
+                                    <i class="fa fa-edit"> Editar</i>
                                   </button>
 
                                 <button (click)="aprobarObservacion( observacionPendienteRealizar )" type="submit" class="btn btn-success">
-                                    <i class="fa fa-check"></i>
+                                    <i class="fa fa-check"> Validar</i>
                                 </button>
-
+                            </div>
                             </td>
                         </tr>
                     </tbody>

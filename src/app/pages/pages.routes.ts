@@ -8,6 +8,7 @@ import { UsuariosComponent } from './usuarios/usuarios.component';
 import { ObservacionesPreventivasComponent } from './observaciones-preventivas/observaciones-preventivas.component';
 import { Graficas1Component } from './graficas1/graficas1.component';
 import { MisObservacionesComponent } from './observaciones-preventivas/mis-observaciones.component';
+import { ObservacionComponent } from './observaciones-preventivas/observacion.component';
 
 const pagesRoutes: Routes = [
     {
@@ -23,7 +24,7 @@ const pagesRoutes: Routes = [
             { path: 'usuarios', component: UsuariosComponent, data: { titulo: 'Mantenimiento de Usuarios' } },
             { path: 'observaciones', component: ObservacionesPreventivasComponent, data: { titulo: 'Observaciones Preventivas' } },
             { path: 'mis-observaciones', component: MisObservacionesComponent, data: { titulo: 'Mis Observaciones Preventivas' } },
-            { path: 'observaciones/:observacion', component: MisObservacionesComponent, data: { titulo: 'Crear Observaciones Preventivas' } },
+            { path: 'observacion/:id', component: ObservacionComponent, data: { titulo: 'Actualizar Observación Preventiva' } },
             { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
         ]
     }

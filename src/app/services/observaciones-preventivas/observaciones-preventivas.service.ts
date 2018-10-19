@@ -15,6 +15,11 @@ export class ObservacionesPreventivasService {
     public http: HttpClient
   ) { }
 
+  cargarObservaciones( desde: number = 0) {
+    let url = URL_SERVICIOS + '/observacionespreventivas/?desde=' + desde;
+    return this.http.get( url );
+  }
+
   cargarObservacionesPendienteRealizar(desde: number = 0) {
     let url = URL_SERVICIOS + '/observacionespreventivas/estado/Pendiente Realizar?desde=' + desde;
     return this.http.get( url );
@@ -42,7 +47,7 @@ export class ObservacionesPreventivasService {
 
   obtenerObservacion( id: string ) {
     let url = URL_SERVICIOS + '/observacionespreventivas/observacion/' + id;
-    return this.http.get( url );
+    return this.http.get( url ).map( (resp: any) => resp.sdr);
   }
 
   validarObservacion(observacion: ObservacionesPreventivas) {
