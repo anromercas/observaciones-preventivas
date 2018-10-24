@@ -1,5 +1,120 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~@ng-select/ng-select/themes/default.theme.css";
+
+/* angular-cli file: src/styles.css */
+@import "../node_modules/angular-calendar/css/angular-calendar.css";
+
+html,body{
+    font-family:'Opens Sans',helvetica;  
+    height:100%;
+    width:100%;
+    margin: 0px;
+  }
+
+  td {
+    margin-top: 20px;
+  }
+
+agm-map {
+    width: 100%;
+    height: 500px;
+  }
+
+  img:hover {
+    opacity: 0.5;
+    filter: alpha(opacity=50);
+}
+
+#bg-principal{
+    background-image: url('./assets/images/background/fondo-principal-768w.png') !important;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100%;      
+}
+
+/* Imagen utilizada en pantallas de anchura 480 px y superior */
+@media (min-width: 480px) {
+    #bg-principal {
+        background: url('./assets/images/background/fondo-principal-480w.png') !important;
+        background-repeat: no-repeat !important;
+        height: 360px !important;
+        width: 480px !important;
+    }
+
+    .img-icon {
+        height: 50px !important;
+    }
+}
+
+/* Imagen utilizada en pantallas de anchura 768 px y superior */
+@media (min-width: 768px) {
+    #bg-principal {
+        background: url("./assets/images/background/fondo-principal-768w.png") !important;
+        background-repeat: no-repeat !important;
+        height: 576px !important;
+        width: 768px !important;
+    }
+
+    .img-icon {
+        height: 100px !important;
+    }
+}
+
+/* Imagen utilizada en pantallas de anchura 900 px y superior */
+@media (min-width: 900px) {
+    #bg-principal {
+        background: url("./assets/images/background/fondo-principal-900w.png") !important;
+        background-repeat: no-repeat !important;
+        height: 600px !important;
+        width: 900px !important;
+    }
+
+    .img-icon {
+        height: 100px !important;
+    }
+}
+
+/* Imagen utilizada en pantallas de anchura 1200 px y superior */
+@media (min-width: 1200px) {
+    #bg-principal {
+        background: url("./assets/images/background/fondo-principal-1200w.png") !important;
+        background-repeat: no-repeat !important;
+        height: 900px !important;
+        width: 1200px !important;
+    }
+
+    .img-icon {
+        height: 150px !important;
+    }
+}
+
+/* Imagen utilizada en pantallas de anchura 1400 px y superior */
+@media (min-width: 1400px) {
+    #bg-principal {
+        background: url("./assets/images/background/fondo-principal-1400w.png") !important;
+        background-repeat: no-repeat !important;
+        height: 900px !important;
+        width: 1400px !important;
+    }
+
+    .img-icon {
+        height: 200px !important;
+    }
+}
+
+/* Imagen utilizada en pantallas de anchura 1600 px y superior */
+@media (min-width: 1600px) {
+    #bg-principal {
+        background: url("./assets/images/background/fondo-principal-1600w.png") !important;
+        background-repeat: no-repeat !important;
+        height: 1200px !important;
+        width: 1600px !important;
+    }
+    .img-icon {
+        height: 200px !important;
+    }
+}
+
 .pointer {
     cursor: pointer;
 }
@@ -14,6 +129,11 @@
 
 .img-50 {
     width: 50px;
+}
+
+.img-100 {
+    width: 90px;
+    margin-left: 80%;
 }
 
 .oculto {

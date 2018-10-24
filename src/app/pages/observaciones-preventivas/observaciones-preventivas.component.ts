@@ -20,7 +20,6 @@ export class ObservacionesPreventivasComponent implements OnInit {
 
   observaciones: ObservacionesPreventivas[] = [];
 
-
   observacionesPendienteAprobacion: ObservacionesPreventivas[] = [];
   observacionesPendienteRealizar: ObservacionesPreventivas[] = [];
   observacionesAprobadas: ObservacionesPreventivas[] = [];

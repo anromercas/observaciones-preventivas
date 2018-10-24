@@ -3,104 +3,27 @@
 Total tareas 
 ===================================================================== 
 -->
+<div class="row">
+    <div class="col-md-12">
+        <div class="text-left">
+            <button routerLink="/dashboard" type="button" class="btn btn-rounded btn-outline-primary">
+                <i class="fa fa-rotate-left"> Atrás</i>
+            </button>
+        </div>
+        <div class="text-right">
+            <button [routerLink]="['/observacion','nuevo']" type="button" class="btn waves-effect waves-light btn-rounded btn-primary">
+                <i class="fa fa-plus"></i>
+                Crear Observacion Preventiva
+            </button>
+        </div>
+
+    </div>
+</div>
+
+<br>
 
 <div class="row animated bounceInDown">
-        <div class="col">
-            <div class="card">
-                <div class="card-body">
-    
-                    <input (keyup)="buscarObservacion( input.value )" #input type="text" class="form-control" placeholder="Buscar tarea...">
-    
-                </div>
-            </div>
-        </div>
-    </div>
-    
-     <div class="row animated bounceInRight" *ngIf="cargando">
-        <div class="col">
-            <div class="alert alert-warning text-center">
-                <strong>Cargando</strong>
-                <br>
-                <i class="fa fa-refresh fa-spin fa-2x"></i>
-                <br>
-                <span>Espere por favor</span>
-            </div>
-        </div>
-    </div>
-    
-    <div class="row animated fadeIn" *ngIf="!cargando">
-        <div class="col">
-            <div class="card">
-                <div class="card-body">
-
-                        <div class="text-right">
-                                <button [routerLink]="['/observacion','nuevo']" type="button" class="btn waves-effect waves-light btn-rounded btn-primary">
-                                <i class="fa fa-plus"></i> 
-                                Crear Observacion Preventiva
-                              </button>
-                            </div>
-    
-                    <h3 class="cardtitle">Total tareas ( <small> {{ totalRegistros
-                            }} </small> ) </h3>
-    
-                    <table class="table table-hover table-striped table-responsive">
-                        <thead>
-                            <tr>
-                                <th>Fecha creación</th>
-                                <th>Usuario Asigando</th>
-                                <th>Formulario</th>
-                                <th>Zona</th>
-                                <th>Fecha</th>
-                                <th>Repetición</th>
-                                <th>Estado</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let observacion of observaciones">
-                                <td> {{ observacion.fechacreacion | date:'dd/MM/yyyy' }} </td>
-                                <td> {{ observacion.usuario.nombre + ' ' +
-                                    observacion.usuario.apellido + ' ' +
-                                    observacion.usuario.segundoapellido }} </td>
-                                <td> {{ observacion.formulario }} </td>
-                                <td> {{ observacion.zona }} </td>
-                                <td> {{ observacion.fecha | date:'dd/MM/yyyy' }} </td>
-                                <td> {{ observacion.repeticion }} </td>
-                                <td class="badge badge-warning"> {{ observacion.estado }} </td>
-                                <td>
-                                    <button (click)="borrarObservacion( observacion )" type="submit" class="btn btn-danger"
-                                        style="margin: 10px">
-                                        <i class="fa fa-trash"> Borrar</i>
-                                    </button>
-    
-                                    <button [routerLink]="['/observacion/', observacion._id ]" class="btn btn-warning" style="margin: 10px">
-                                        <i class="fa fa-edit"> Editar</i>
-                                      </button>
-    
-                                    <button (click)="validarObservacion( observacionPendienteRealizar )" type="submit" class="btn btn-success" style="margin: 10px">
-                                        <i class="fa fa-check"> Validar</i>
-                                    </button>
-    
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <button (click)="cambiarDesde(-5, 'Pendiente Realizar')" class="btn btn-secondary">Anteriores</button>
-                    <button (click)="cambiarDesde(5, 'Pendiente Realizar')" class="btn btn-secondary">Siguientes</button>
-                </div>
-            </div>
-        </div>
-    </div> 
-
-
-<!-- 
-=====================================================================
-Total tareas Pendiente realizar
-===================================================================== 
--->
-
-<div class="row animated bounceInDown">
-    <div class="col-6">
+    <div class="col">
         <div class="card">
             <div class="card-body">
 
@@ -111,8 +34,93 @@ Total tareas Pendiente realizar
     </div>
 </div>
 
- <div class="row animated bounceInRight" *ngIf="cargandoPendienteRealizar">
-    <div class="col-sm-6">
+<div class="row animated bounceInRight" *ngIf="cargando">
+    <div class="col">
+        <div class="alert alert-warning text-center">
+            <strong>Cargando</strong>
+            <br>
+            <i class="fa fa-refresh fa-spin fa-2x"></i>
+            <br>
+            <span>Espere por favor</span>
+        </div>
+    </div>
+</div>
+
+<div class="row animated fadeIn" *ngIf="!cargando">
+    <div class="col">
+        <div class="card">
+            <div class="card-body">
+                <h1 class="card-title">Tareas Caducadas</h1>
+                <h3 class="card-subtitle">Total tareas ( <small> {{ totalRegistros }} </small> ) </h3>
+
+                <table class="table table-hover table-striped table-responsive">
+                    <thead>
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Estado</th>
+                            <th>Usuario Asigando</th>
+                            <th>Formulario</th>
+                            <th>Zona</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let observacion of observaciones">
+                            <td> {{ observacion.fecha | date:'dd/MM/yyyy' }} </td>
+                            <td class="badge badge-danger"> Caducada </td>
+                            <td> {{ observacion.usuario.nombre + ' ' +
+                                observacion.usuario.apellido + ' ' +
+                                observacion.usuario.segundoapellido }} </td>
+                            <td> {{ observacion.formulario }} </td>
+                            <td> {{ observacion.zona }} </td>
+                            <td>
+                                <button (click)="borrarObservacion( observacion )" type="submit" class="btn btn-warning"
+                                    style="margin: 10px">
+                                    <i class="fa fa-envelope-open-o"> Recordatorio</i>
+                                </button>
+
+                                <button [routerLink]="['/observacion/', observacion._id ]" class="btn btn-primary"
+                                    style="margin: 10px">
+                                    <i class="fa fa-refresh"> Reasignar</i>
+                                </button>
+
+                                <!--            <button (click)="validarObservacion( observacionPendienteRealizar )" type="submit"
+                                    class="btn btn-success" style="margin: 10px">
+                                    <i class="fa fa-check"></i>
+                                </button> -->
+
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <button (click)="cambiarDesde(-5, 'Pendiente Realizar')" class="btn btn-secondary">Anteriores</button>
+                <button (click)="cambiarDesde(5, 'Pendiente Realizar')" class="btn btn-secondary">Siguientes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- 
+=====================================================================
+Total tareas Pendiente realizar
+===================================================================== 
+-->
+<!-- 
+<div class="row animated bounceInDown">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+
+                <input (keyup)="buscarObservacion( input.value )" #input type="text" class="form-control" placeholder="Buscar tarea...">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row animated bounceInRight" *ngIf="cargandoPendienteRealizar">
+    <div class="col-sm-12">
         <div class="alert alert-warning text-center">
             <strong>Cargando</strong>
             <br>
@@ -124,14 +132,14 @@ Total tareas Pendiente realizar
 </div>
 
 <div class="row animated fadeIn" *ngIf="!cargandoPendienteRealizar">
-    <div class="col-6">
+    <div class="col-12">
         <div class="card">
             <div class="card-body">
 
                 <h3 class="cardtitle">Total tareas Pentientes de Realizar( <small> {{ totalRegistrosPendienteRealizar
                         }} </small> ) </h3>
 
-                <table class="table table-hover">
+                <table class="table table-hover table-striped table-responsive">
                     <thead>
                         <tr>
                             <th>Fecha creación</th>
@@ -163,9 +171,10 @@ Total tareas Pendiente realizar
 
                                 <button [routerLink]="['/observacion/', observacion._id ]" class="btn btn-warning">
                                     <i class="fa fa-edit"></i>
-                                  </button>
+                                </button>
 
-                                <button (click)="validarObservacion( observacionPendienteRealizar )" type="submit" class="btn btn-success">
+                                <button (click)="validarObservacion( observacionPendienteRealizar )" type="submit"
+                                    class="btn btn-success">
                                     <i class="fa fa-check"></i>
                                 </button>
 
@@ -178,7 +187,7 @@ Total tareas Pendiente realizar
             </div>
         </div>
     </div>
-</div> 
+</div> -->
 
 <!-- 
 =====================================================================
@@ -186,8 +195,20 @@ Total tareas Pendiente Aprobacion
 ===================================================================== 
 -->
 
+<div class="row animated bounceInDown">
+    <div class="col">
+        <div class="card">
+            <div class="card-body">
+
+                <input (keyup)="buscarObservacion( input.value )" #input type="text" class="form-control" placeholder="Buscar tarea...">
+
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="row animated bounceInRight" *ngIf="cargandoPendienteAprobacion">
-    <div class="col-sm-6">
+    <div class="col-12">
         <div class="alert alert-warning text-center">
             <strong>Cargando</strong>
             <br>
@@ -198,53 +219,53 @@ Total tareas Pendiente Aprobacion
     </div>
 </div>
 
+
 <div class="row animated fadeIn" *ngIf="!cargandoPendienteAprobacion">
-    <div class="col-xl-8 col-lg-9 col-md-10 col-sm-12">
+    <div class="col-12">
         <div class="card">
             <div class="card-body">
 
                 <h3 class="cardtitle">Total tareas Pentientes de Aprobacion( <small> {{
                         totalRegistrosPendienteAprobar }} </small> ) </h3>
 
-                <table class="table table-hover table-striped table-sm-12 table-md-12 table-lg-12 table-responsive table-responsive-lg">
+                <table class="table table-hover table-striped table-responsive ">
                     <thead>
                         <tr>
-                            <th scope="row">Fecha creación</th>
-                            <th scope="row">Usuario Asigando</th>
-                            <th scope="row">Formulario</th>
-                            <th scope="row">Zona</th>
-                            <th scope="row">Fecha</th>
-                            <th scope="row">Repetición</th>
-                            <th scope="row">Estado</th>
-                            <th scope="row">Operaciones</th>
+                            <th>Fecha</th>
+                            <th>Estado</th>
+                            <th>Usuario Asigando</th>
+                            <th>Formulario</th>
+                            <th>Tipo</th>
+                            <th>Operaciones</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr *ngFor="let observacionPendienteAprobacion of observacionesPendienteAprobacion">
-                            <td> {{ observacionPendienteAprobacion.fechacreacion | date:'dd/MM/yyyy' }} </td>
+                            <td> {{ observacionPendienteAprobacion.fecha | date:'dd/MM/yyyy' }} </td>
+                            <td class="badge badge-primary"> {{ observacionPendienteAprobacion.estado }} </td>
                             <td> {{ observacionPendienteAprobacion.usuario.nombre + ' ' +
                                 observacionPendienteAprobacion.usuario.apellido + ' ' +
                                 observacionPendienteAprobacion.usuario.segundoapellido }} </td>
                             <td> {{ observacionPendienteAprobacion.formulario }} </td>
                             <td> {{ observacionPendienteAprobacion.zona }} </td>
-                            <td> {{ observacionPendienteAprobacion.fecha | date:'dd/MM/yyyy' }} </td>
-                            <td> {{ observacionPendienteAprobacion.repeticion }} </td>
-                            <td class="badge badge-primary"> {{ observacionPendienteAprobacion.estado }} </td>
                             <td>
                                 <div>
-                                <button (click)="borrarObservacion( observacionPendienteAprobacion )" type="submit" class="btn btn-danger"
-                                    style="margin: 2px">
-                                    <i class="fa fa-trash"> Borrar</i>
-                                </button>
+                                    <button [routerLink]="['/observacion/', observacion._id ]" class="btn btn-warning"
+                                        style="margin: 2px">
+                                        <i class="fa fa-file"> Leer</i>
+                                    </button>
 
-                                <button [routerLink]="['/observacion/', observacion._id ]" class="btn btn-warning" style="margin: 2px">
-                                    <i class="fa fa-edit"> Editar</i>
-                                  </button>
 
-                                <button (click)="aprobarObservacion( observacionPendienteRealizar )" type="submit" class="btn btn-success">
-                                    <i class="fa fa-check"> Validar</i>
-                                </button>
-                            </div>
+                                    <button (click)="aprobarObservacion( observacionPendienteRealizar )" type="submit"
+                                        class="btn btn-success">
+                                        <i class="fa fa-check"> Validar</i>
+                                    </button>
+
+                                    <button (click)="borrarObservacion( observacionPendienteAprobacion )" type="submit"
+                                        class="btn btn-danger" style="margin: 2px">
+                                        <i class="fa fa-window-close"> Rechazar</i>
+                                    </button>
+                                </div>
                             </td>
                         </tr>
                     </tbody>
@@ -254,7 +275,82 @@ Total tareas Pendiente Aprobacion
             </div>
         </div>
     </div>
-</div> 
+</div>
+
+<!-- 
+=====================================================================
+Historico tareas 
+===================================================================== 
+-->
+
+<div class="row animated bounceInDown">
+    <div class="col">
+        <div class="card">
+            <div class="card-body">
+
+                <input (keyup)="buscarObservacion( input.value )" #input type="text" class="form-control" placeholder="Buscar tarea...">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row animated bounceInRight" *ngIf="cargando">
+    <div class="col">
+        <div class="alert alert-warning text-center">
+            <strong>Cargando</strong>
+            <br>
+            <i class="fa fa-refresh fa-spin fa-2x"></i>
+            <br>
+            <span>Espere por favor</span>
+        </div>
+    </div>
+</div>
+
+<div class="row animated fadeIn" *ngIf="!cargando">
+    <div class="col">
+        <div class="card">
+            <div class="card-body">
+                <h1 class="card-title">Histórico de Tareas</h1>
+                <h3 class="card-subtitle">Total tareas ( <small> {{ totalRegistros || 16 }} </small> ) </h3>
+
+                <table class="table table-hover table-striped table-responsive">
+                    <thead>
+                        <tr>
+                            <th>Usuario Asigando</th> <!-- quien -->
+                            <th>Formulario</th> <!-- el que -->
+                            <th>Tipo</th> <!-- donde -->
+                            <th>Realizado</th> <!-- cuando hizo -->
+                            <th>Validado</th> <!-- cuando ok -->
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let observacion of observaciones">
+                            <td> {{ observacion.usuario.nombre + ' ' +
+                                observacion.usuario.apellido + ' ' +
+                                observacion.usuario.segundoapellido }} </td>
+                            <td> {{ observacion.formulario }} </td>
+                            <td> {{ observacion.zona }} </td>
+                            <td> {{ observacion.fechacreacion | date:'dd/MM/yyyy' }} </td>
+                            <td> {{ observacion.fecha | date:'dd/MM/yyyy' }} </td>
+                            <td>
+
+                                <button [routerLink]="['/observacion/', observacion._id ]" class="btn btn-primary"
+                                    style="margin: 10px">
+                                    <i class="fa fa-eye"> Abrir</i>
+                                </button>
+
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <button (click)="cambiarDesde(-5, 'Pendiente Realizar')" class="btn btn-secondary">Anteriores</button>
+                <button (click)="cambiarDesde(5, 'Pendiente Realizar')" class="btn btn-secondary">Siguientes</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!-- 
 =====================================================================
@@ -262,70 +358,70 @@ Total tareas Aprobadas
 ===================================================================== 
 -->
 
-<div class="row animated bounceInRight" *ngIf="cargandoAprobadas">
-        <div class="col-sm-6">
-            <div class="alert alert-warning text-center">
-                <strong>Cargando</strong>
-                <br>
-                <i class="fa fa-refresh fa-spin fa-2x"></i>
-                <br>
-                <span>Espere por favor</span>
-            </div>
+<!-- <div class="row animated bounceInRight" *ngIf="cargandoAprobadas">
+    <div class="col-12">
+        <div class="alert alert-warning text-center">
+            <strong>Cargando</strong>
+            <br>
+            <i class="fa fa-refresh fa-spin fa-2x"></i>
+            <br>
+            <span>Espere por favor</span>
         </div>
     </div>
-    
-    <div class="row animated fadeIn" *ngIf="!cargandoAprobadas">
-        <div class="col-6">
-            <div class="card">
-                <div class="card-body">
-    
-                    <h3 class="cardtitle">Total tareas Aprobadas ( <small> {{
-                            totalRegistrosAprobadas }} </small> ) </h3>
-    
-                    <table class="table table-hover">
-                        <thead>
-                            <tr>
-                                <th>Fecha creación</th>
-                                <th>Usuario Asigando</th>
-                                <th>Formulario</th>
-                                <th>Zona</th>
-                                <th>Fecha</th>
-                                <th>Repetición</th>
-                                <th>Estado</th>
-                                <th>Operaciones</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let observacionAprobada of observacionesAprobadas">
-                                <td> {{ observacionAprobada.fechacreacion | date:'dd/MM/yyyy' }} </td>
-                                <td> {{ observacionAprobada.usuario.nombre + ' ' +
-                                    observacionAprobada.usuario.apellido + ' ' +
-                                    observacionAprobada.usuario.segundoapellido }} </td>
-                                <td> {{ observacionAprobada.formulario }} </td>
-                                <td> {{ observacionAprobada.zona }} </td>
-                                <td> {{ observacionAprobada.fecha | date:'dd/MM/yyyy' }} </td>
-                                <td> {{ observacionAprobada.repeticion }} </td>
-                                <td class="badge badge-success"> {{ observacionAprobada.estado }} </td>
-                                <td>
-                                    <button (click)="borrarObservacion( observacionAprobada )" type="submit" class="btn btn-danger"
-                                        style="margin: 10px">
-                                        <i class="fa fa-trash"></i>
-                                    </button>
+</div>
 
-                                    <button [routerLink]="['/observacion/', observacion._id ]" class="btn btn-warning">
-                                        <i class="fa fa-edit"></i>
-                                      </button>
-    
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <button (click)="cambiarDesde(-5, 'Aprobada')" class="btn btn-secondary">Anteriores</button>
-                    <button (click)="cambiarDesde(5, 'Aprobada')" class="btn btn-secondary">Siguientes</button>
-                </div>
+<div class="row animated fadeIn" *ngIf="!cargandoAprobadas">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+
+                <h3 class="cardtitle">Total tareas Aprobadas ( <small> {{
+                        totalRegistrosAprobadas }} </small> ) </h3>
+
+                <table class="table table-hover table-striped table-responsive">
+                    <thead>
+                        <tr>
+                            <th>Fecha creación</th>
+                            <th>Usuario Asigando</th>
+                            <th>Formulario</th>
+                            <th>Zona</th>
+                            <th>Fecha</th>
+                            <th>Repetición</th>
+                            <th>Estado</th>
+                            <th>Operaciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let observacionAprobada of observacionesAprobadas">
+                            <td> {{ observacionAprobada.fechacreacion | date:'dd/MM/yyyy' }} </td>
+                            <td> {{ observacionAprobada.usuario.nombre + ' ' +
+                                observacionAprobada.usuario.apellido + ' ' +
+                                observacionAprobada.usuario.segundoapellido }} </td>
+                            <td> {{ observacionAprobada.formulario }} </td>
+                            <td> {{ observacionAprobada.zona }} </td>
+                            <td> {{ observacionAprobada.fecha | date:'dd/MM/yyyy' }} </td>
+                            <td> {{ observacionAprobada.repeticion }} </td>
+                            <td class="badge badge-success"> {{ observacionAprobada.estado }} </td>
+                            <td>
+                                <button (click)="borrarObservacion( observacionAprobada )" type="submit" class="btn btn-danger"
+                                    style="margin: 10px">
+                                    <i class="fa fa-trash"></i>
+                                </button>
+
+                                <button [routerLink]="['/observacion/', observacion._id ]" class="btn btn-warning">
+                                    <i class="fa fa-edit"></i>
+                                </button>
+
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <button (click)="cambiarDesde(-5, 'Aprobada')" class="btn btn-secondary">Anteriores</button>
+                <button (click)="cambiarDesde(5, 'Aprobada')" class="btn btn-secondary">Siguientes</button>
             </div>
         </div>
     </div>
+</div> -->
 
 
 
@@ -335,69 +431,69 @@ Total tareas Realizadas
 ===================================================================== 
 -->
 
-<div class="row animated bounceInRight" *ngIf="cargandoRechazadas">
-        <div class="col-sm-6">
-            <div class="alert alert-warning text-center">
-                <strong>Cargando</strong>
-                <br>
-                <i class="fa fa-refresh fa-spin fa-2x"></i>
-                <br>
-                <span>Espere por favor</span>
-            </div>
+<!-- <div class="row animated bounceInRight" *ngIf="cargandoRechazadas">
+    <div class="col-12">
+        <div class="alert alert-warning text-center">
+            <strong>Cargando</strong>
+            <br>
+            <i class="fa fa-refresh fa-spin fa-2x"></i>
+            <br>
+            <span>Espere por favor</span>
         </div>
     </div>
-    
-    <div class="row animated fadeIn" *ngIf="!cargandoRechazadas">
-        <div class="col-6">
-            <div class="card">
-                <div class="card-body">
-    
-                    <h3 class="cardtitle">Total tareas Rechazadas( <small> {{
-                            totalRegistrosRechazadas }} </small> ) </h3>
-    
-                    <table class="table table-hover">
-                        <thead class="thead-light">
-                            <tr>
-                                <th>Fecha creación</th>
-                                <th>Usuario Asigando</th>
-                                <th>Formulario</th>
-                                <th>Zona</th>
-                                <th>Fecha</th>
-                                <th>Repetición</th>
-                                <th>Estado</th>
-                                <th>Operaciones</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let observacionRechazada of observacionesRechazadas">
-                                <td> {{ observacionRechazada.fechacreacion | date:'dd/MM/yyyy' }} </td>
-                                <td> {{ observacionRechazada.usuario.nombre + ' ' +
-                                        observacionRechazada.usuario.apellido + ' ' +
-                                        observacionRechazada.usuario.segundoapellido }} </td>
-                                <td> {{ observacionRechazada.formulario }} </td>
-                                <td> {{ observacionRechazada.zona }} </td>
-                                <td> {{ observacionRechazada.fecha | date:'dd/MM/yyyy' }} </td>
-                                <td> {{ observacionRechazada.repeticion }} </td>
-                                <td class="badge badge-danger"> {{ observacionRechazada.estado }} </td>
-                                <td>
-                                    <button (click)="borrarObservacion( observacionRechazada )" type="submit" class="btn btn-danger"
-                                        style="margin: 10px">
-                                        <i class="fa fa-trash"></i>
-                                    </button>
-    
-                                    <button [routerLink]="['/observacion/', observacion._id ]" class="btn btn-warning">
-                                        <i class="fa fa-edit"></i>
-                                      </button>
-    
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <div>
+</div>
+
+<div class="row animated fadeIn" *ngIf="!cargandoRechazadas">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+
+                <h3 class="cardtitle">Total tareas Rechazadas( <small> {{
+                        totalRegistrosRechazadas }} </small> ) </h3>
+
+                <table class="table table-hover table-striped table-responsive">
+                    <thead class="thead-light">
+                        <tr>
+                            <th>Fecha creación</th>
+                            <th>Usuario Asigando</th>
+                            <th>Formulario</th>
+                            <th>Zona</th>
+                            <th>Fecha</th>
+                            <th>Repetición</th>
+                            <th>Estado</th>
+                            <th>Operaciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let observacionRechazada of observacionesRechazadas">
+                            <td> {{ observacionRechazada.fechacreacion | date:'dd/MM/yyyy' }} </td>
+                            <td> {{ observacionRechazada.usuario.nombre + ' ' +
+                                observacionRechazada.usuario.apellido + ' ' +
+                                observacionRechazada.usuario.segundoapellido }} </td>
+                            <td> {{ observacionRechazada.formulario }} </td>
+                            <td> {{ observacionRechazada.zona }} </td>
+                            <td> {{ observacionRechazada.fecha | date:'dd/MM/yyyy' }} </td>
+                            <td> {{ observacionRechazada.repeticion }} </td>
+                            <td class="badge badge-danger"> {{ observacionRechazada.estado }} </td>
+                            <td>
+                                <button (click)="borrarObservacion( observacionRechazada )" type="submit" class="btn btn-danger"
+                                    style="margin: 10px">
+                                    <i class="fa fa-trash"></i>
+                                </button>
+
+                                <button [routerLink]="['/observacion/', observacion._id ]" class="btn btn-warning">
+                                    <i class="fa fa-edit"></i>
+                                </button>
+
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div>
                     <button (click)="cambiarDesde(-5, 'Rechazada')" class="btn btn-secondary">Anteriores</button>
                     <button (click)="cambiarDesde(5, 'Rechazada')" class="btn btn-secondary">Siguientes</button>
-                    </div>
                 </div>
             </div>
         </div>
     </div>
+</div> -->

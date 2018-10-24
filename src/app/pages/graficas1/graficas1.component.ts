@@ -11,10 +11,10 @@ export class Graficas1Component implements OnInit {
 
   graficos: any = {
     'grafico1': {
-      'labels': ['Con Frijoles', 'Con Natilla', 'Con tocino'],
-      'data':  [24, 30, 46],
+      'labels': ['Pendiente Realizar', 'Pendiente Aprobación', 'Aceptada', 'Caducada', ],
+      'data':  [24, 30, 46, 15],
       'type': 'doughnut',
-      'leyenda': 'El pan se come con'
+      'leyenda': 'Total Tareas'
     },
     'grafico2': {
       'labels': ['Hombres', 'Mujeres'],
@@ -26,13 +26,13 @@ export class Graficas1Component implements OnInit {
       'labels': ['Si', 'No'],
       'data':  [95, 5],
       'type': 'doughnut',
-      'leyenda': '¿Le dan gases los frijoles?'
+      'leyenda': ''
     },
     'grafico4': {
       'labels': ['No', 'Si'],
       'data':  [85, 15],
       'type': 'doughnut',
-      'leyenda': '¿Le importa que le den gases?'
+      'leyenda': ''
     },
   };
 

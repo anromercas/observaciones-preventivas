@@ -5,6 +5,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Usuario } from 'src/app/models/usuario.model';
 import { Router, ActivatedRoute } from '@angular/router';
 
+declare var swal: any;
 
 @Component({
   selector: 'app-observacion',
@@ -23,6 +24,10 @@ export class ObservacionComponent implements OnInit {
   desde: number = 0;
   id: string;
 
+  observaciones: ObservacionesPreventivas[] = [];
+  totalRegistros: number = 0;
+  cargando: boolean = true;
+
   constructor(
     public _observacionesService: ObservacionesPreventivasService,
     public _usuarioService: UsuarioService,
@@ -40,6 +45,7 @@ export class ObservacionComponent implements OnInit {
   ngOnInit() {
 
     this.cargarUsuarios();
+    this.cargarObservaciones();
 
     this.forma = new FormGroup({
       usuario: new FormControl(null, Validators.required),
@@ -48,6 +54,17 @@ export class ObservacionComponent implements OnInit {
       fecha: new FormControl(null, Validators.required),
       repeticion: new FormControl(null, Validators.required)
     });
+
+  }
+
+  cargarObservaciones() {
+    this.cargando = true;
+    this._observacionesService.cargarObservaciones( this.desde )
+                        .subscribe( (resp: any) => {
+                          this.totalRegistros = resp.total;
+                          this.observaciones = resp.observaciones;
+                          this.cargando = false;
+                        });
 
   }
 
@@ -65,6 +82,7 @@ export class ObservacionComponent implements OnInit {
     this._observacionesService.crearObservacion( this.observacion )
                               .subscribe( (resp: any) => {
                                 console.log(resp);
+                                this.cargarObservaciones();
                               });
   }
 
@@ -90,6 +108,27 @@ export class ObservacionComponent implements OnInit {
       this.forma.get('fecha').setValue(this.observacion.fecha);
       this.forma.get('repeticion').setValue(this.observacion.repeticion);
 
+    });
+  }
+
+  borrarObservacion( observacion: ObservacionesPreventivas ) {
+
+    swal({
+      title: '¿Está seguro?',
+      text: 'Está a punto de borrar una observación preventiva',
+      icon: 'warning',
+      buttons: true,
+      dangerMode: true,
+    })
+    .then( borrar => {
+
+      if (borrar) {
+          this._observacionesService.borrarObservacion( observacion._id )
+                              .subscribe( borrado => {
+                                  console.log( borrado );
+                                  this.cargarObservaciones();
+                              });
+      }
     });
   }
 
