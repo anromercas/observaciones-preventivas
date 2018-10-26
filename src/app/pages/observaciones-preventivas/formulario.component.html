@@ -1,36 +1,59 @@
 <div class="row">
-  <div class="col-md-6">
+  <div class="col-md-12">
     <div class="card card-body">
       <h3 class="box-title m-b-0">1) Posición del trabajador</h3>
       <p class="text-muted m-b-30 font-13"></p>
-      <div class="row">
-        <div class="col-12">
-          <form>
-            <div class="form-group" [ngClass]="{'check':seleccionado}">
-              <div class="col-md-4">
-                <label class="btn btn-primary">
-                  <img (click)="seleccionado=!seleccionado"  src="../../../assets/images/icon/golpeado.png" alt="golpeado" class="img-thumbnail img-thumbnail">
+
+      <form>
+        <div class="row">
+          <div class="col-sm-3">
+            <label class="btn">
+              <img [ngClass]="{'check':seleccionado[0]}" (click)="seleccionado[0]=!seleccionado[0]" src="../../../assets/images/icon/golpeado.png"
+                alt="golpeado" class=" h100">
+              <input type="checkbox" name="golpeado" id="golpeado" value="golpeado" class="hidden" autocomplete="off">
+            </label>
+          </div>
+          <div class="col-sm-3">
+            <label class="btn">
+              <img [ngClass]="{'check':seleccionado[1]}" (click)="seleccionado[1]=!seleccionado[1]" src="../../../assets/images/icon/golpeandose.png"
+                alt="golpeado" class=" h100">
+              <input type="checkbox" name="golpeado" id="golpeado" value="golpeado" class="hidden" autocomplete="off">
+            </label>
+          </div>
+
+          <div class="col-sm-3">
+              <label class="btn">
+                <img [ngClass]="{'check':seleccionado[2]}" (click)="seleccionado[2]=!seleccionado[2]" src="../../../assets/images/icon/atrapado.png"
+                  alt="golpeado" class=" h100">
+                <input type="checkbox" name="golpeado" id="golpeado" value="golpeado" class="hidden" autocomplete="off">
+              </label>
+            </div>
+
+            <div class="col-sm-3">
+                <label class="btn">
+                  <img [ngClass]="{'check':seleccionado[3]}" (click)="seleccionado[3]=!seleccionado[3]" src="../../../assets/images/icon/caidas.png"
+                    alt="golpeado" class="h100">
                   <input type="checkbox" name="golpeado" id="golpeado" value="golpeado" class="hidden" autocomplete="off">
                 </label>
               </div>
-              <div class="col-md-4">
-                  <label class="btn btn-primary">
-                    <img (click)="seleccionado=!seleccionado"  src="../../../assets/images/icon/golpeado.png" alt="golpeado" class="img-thumbnail img-thumbnail">
+              <div class="col-sm-3">
+                  <label class="btn">
+                    <img [ngClass]="{'check':seleccionado[4]}" (click)="seleccionado[4]=!seleccionado[4]" src="../../../assets/images/icon/temp-extremas.png"
+                      alt="golpeado" class="h100">
                     <input type="checkbox" name="golpeado" id="golpeado" value="golpeado" class="hidden" autocomplete="off">
                   </label>
                 </div>
-            </div>
 
-          </form>
         </div>
-      </div>
+      </form>
+
     </div>
   </div>
-  <div class="col-md-6">
+  <!--   <div class="col-md-6">
     <div class="card card-body">
       <h3 class="box-title m-b-0">Sample Horizontal form</h3>
       <p class="text-muted m-b-30 font-13"> Use Bootstrap's predefined grid classes for horizontal form </p>
-      
+
     </div>
-  </div>
+  </div> -->
 </div>

@@ -7,21 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FormularioComponent implements OnInit {
 
-  seleccionado: boolean = false;
+  seleccionado: boolean[] = [false, false, false, false, false];
 
   constructor() { }
 
   ngOnInit() {
-  }
-
-  seleccion() {
-    if (this.seleccion) {
-      this.seleccionado = false;
-    } else {
-      this.seleccionado = true;
-    }
-    console.log(this.seleccionado);
-    return this.seleccionado;
   }
 
 }
