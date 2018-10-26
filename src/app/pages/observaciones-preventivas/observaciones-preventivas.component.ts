@@ -236,6 +236,11 @@ export class ObservacionesPreventivasComponent implements OnInit {
                         });
   }
 
+
+  recordatorio( nombre: string, apellido: string) {
+    swal('Recordatorio enviado', 'recordatorio enviado al usuario: ' + nombre + ' ' + apellido, 'success');
+  }
+
   borrarObservacion( observacion: ObservacionesPreventivas ) {
 
     swal({

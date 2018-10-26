@@ -48,7 +48,7 @@ export class RegisterComponent implements OnInit {
         condiciones: new FormControl( false ),
     }, { validators: this.sonIguales('password', 'password2') } );
 
-    this.forma.setValue({
+/*     this.forma.setValue({
       nombre: 'Test ',
       apellido: 'Teste',
       segundoapellido: 'Testeo',
@@ -56,7 +56,7 @@ export class RegisterComponent implements OnInit {
       password: '1234',
       password2: '1234',
       condiciones: true
-    });
+    }); */
   }
 
   registrarUsuario() {

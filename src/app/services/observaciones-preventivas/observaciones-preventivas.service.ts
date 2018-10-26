@@ -47,7 +47,7 @@ export class ObservacionesPreventivasService {
 
   obtenerObservacion( id: string ) {
     let url = URL_SERVICIOS + '/observacionespreventivas/observacion/' + id;
-    return this.http.get( url ).map( (resp: any) => resp.sdr);
+    return this.http.get( url ).map( (resp: any) => resp.observacion);
   }
 
   validarObservacion(observacion: ObservacionesPreventivas) {

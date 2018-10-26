@@ -10,6 +10,8 @@ import { Graficas1Component } from './graficas1/graficas1.component';
 import { MisObservacionesComponent } from './observaciones-preventivas/mis-observaciones.component';
 import { ObservacionComponent } from './observaciones-preventivas/observacion.component';
 import { MapaComponent } from './mapa/mapa.component';
+import { ModificarObservacionComponent } from './observaciones-preventivas/modificar-observacion.component';
+import { FormularioComponent } from './observaciones-preventivas/formulario.component';
 
 const pagesRoutes: Routes = [
     {
@@ -24,11 +26,13 @@ const pagesRoutes: Routes = [
             { path: 'usuarios', component: UsuariosComponent, data: { titulo: 'Mantenimiento de Usuarios' } },
             { path: 'observaciones', component: ObservacionesPreventivasComponent, data: { titulo: 'Observaciones Preventivas' } },
             { path: 'mis-observaciones', component: MisObservacionesComponent, data: { titulo: 'Mis Observaciones Preventivas' } },
-            { path: 'observacion/:id', component: ObservacionComponent, data: { titulo: 'Actualizar Observación Preventiva' } },
+            { path: 'observacion/:id', component: ObservacionComponent, data: { titulo: 'Crear Observación Preventiva' } },
+            { path: 'modificar-op/:id', component: ModificarObservacionComponent, data: { titulo: 'Actualizar Observación Preventiva' } },
             { path: 'mapa', component: MapaComponent, data: { titulo: 'Mapa' } },
             { path: 'evalua', component: Graficas1Component, data: { titulo: 'Evalúa' } },
             { path: 'acepta', component: ObservacionesPreventivasComponent, data: { titulo: 'Evalúa' } },
             { path: 'planifica', component: ObservacionComponent, data: { titulo: 'Planifica' } },
+            { path: 'formulario', component: FormularioComponent, data: { titulo: 'Formulario' } },
             { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
         ]
     }

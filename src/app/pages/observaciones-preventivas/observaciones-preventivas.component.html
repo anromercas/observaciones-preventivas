@@ -74,20 +74,15 @@ Total tareas
                             <td> {{ observacion.formulario }} </td>
                             <td> {{ observacion.zona }} </td>
                             <td>
-                                <button (click)="borrarObservacion( observacion )" type="submit" class="btn btn-warning"
+                                <button (click)="recordatorio( observacion.usuario.nombre, observacion.usuario.apellido )" type="submit" class="btn btn-warning"
                                     style="margin: 10px">
                                     <i class="fa fa-envelope-open-o"> Recordatorio</i>
                                 </button>
 
-                                <button [routerLink]="['/observacion/', observacion._id ]" class="btn btn-primary"
+                                <button [routerLink]="['/modificar-op/', observacion._id ]" class="btn btn-primary"
                                     style="margin: 10px">
                                     <i class="fa fa-refresh"> Reasignar</i>
                                 </button>
-
-                                <!--            <button (click)="validarObservacion( observacionPendienteRealizar )" type="submit"
-                                    class="btn btn-success" style="margin: 10px">
-                                    <i class="fa fa-check"></i>
-                                </button> -->
 
                             </td>
                         </tr>
@@ -250,13 +245,13 @@ Total tareas Pendiente Aprobacion
                             <td> {{ observacionPendienteAprobacion.zona }} </td>
                             <td>
                                 <div>
-                                    <button [routerLink]="['/observacion/', observacion._id ]" class="btn btn-warning"
+                                    <button [routerLink]="['/formulario/']" class="btn btn-warning"
                                         style="margin: 2px">
                                         <i class="fa fa-file"> Leer</i>
                                     </button>
 
 
-                                    <button (click)="aprobarObservacion( observacionPendienteRealizar )" type="submit"
+                                    <button (click)="aprobarObservacion( observacion )" type="submit"
                                         class="btn btn-success">
                                         <i class="fa fa-check"> Validar</i>
                                     </button>

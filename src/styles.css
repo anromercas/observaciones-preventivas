@@ -4,148 +4,165 @@
 /* angular-cli file: src/styles.css */
 @import "../node_modules/angular-calendar/css/angular-calendar.css";
 
-html,body{
-    font-family:'Opens Sans',helvetica;  
-    height:100%;
-    width:100%;
-    margin: 0px;
-  }
-
-  td {
-    margin-top: 20px;
-  }
-
-agm-map {
-    width: 100%;
-    height: 500px;
-  }
-
-  img:hover {
-    opacity: 0.5;
-    filter: alpha(opacity=50);
+html,
+body {
+  font-family: "Opens Sans", helvetica;
+  height: 100%;
+  width: 100%;
+  margin: 0px;
 }
 
-#bg-principal{
-    background-image: url('./assets/images/background/fondo-principal-768w.png') !important;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: 100%;      
+td {
+  margin-top: 20px;
+}
+
+.check {
+  opacity: 0.5;
+  color: rgb(189, 48, 5);
+}
+
+agm-map {
+  width: 100%;
+  height: 500px;
+}
+
+img:hover {
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+}
+
+#bg-principal {
+  background-image: url("./assets/images/background/fondo-principal-768w.png") !important;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100%;
 }
 
 /* Imagen utilizada en pantallas de anchura 480 px y superior */
 @media (min-width: 480px) {
-    #bg-principal {
-        background: url('./assets/images/background/fondo-principal-480w.png') !important;
-        background-repeat: no-repeat !important;
-        height: 360px !important;
-        width: 480px !important;
-    }
+  #bg-principal {
+    background: url("./assets/images/background/fondo-principal-480w.png") !important;
+    background-repeat: no-repeat !important;
+    height: 360px !important;
+    width: 480px !important;
+  }
 
-    .img-icon {
-        height: 50px !important;
-    }
+  .img-icon {
+    height: 50px !important;
+  }
+
+  .img-register {
+    height: 100px !important;
+  }
 }
 
 /* Imagen utilizada en pantallas de anchura 768 px y superior */
 @media (min-width: 768px) {
-    #bg-principal {
-        background: url("./assets/images/background/fondo-principal-768w.png") !important;
-        background-repeat: no-repeat !important;
-        height: 576px !important;
-        width: 768px !important;
-    }
+  #bg-principal {
+    background: url("./assets/images/background/fondo-principal-768w.png") !important;
+    background-repeat: no-repeat !important;
+    height: 576px !important;
+    width: 768px !important;
+  }
 
-    .img-icon {
-        height: 100px !important;
-    }
+  .img-icon {
+    height: 100px !important;
+  }
+  .img-register {
+    height: 100px !important;
+  }
 }
 
 /* Imagen utilizada en pantallas de anchura 900 px y superior */
 @media (min-width: 900px) {
-    #bg-principal {
-        background: url("./assets/images/background/fondo-principal-900w.png") !important;
-        background-repeat: no-repeat !important;
-        height: 600px !important;
-        width: 900px !important;
-    }
+  #bg-principal {
+    background: url("./assets/images/background/fondo-principal-900w.png") !important;
+    background-repeat: no-repeat !important;
+    height: 600px !important;
+    width: 900px !important;
+  }
 
-    .img-icon {
-        height: 100px !important;
-    }
+  .img-icon {
+    height: 100px !important;
+  }
+
+  .img-register {
+    height: 100px !important;
+  }
 }
 
 /* Imagen utilizada en pantallas de anchura 1200 px y superior */
 @media (min-width: 1200px) {
-    #bg-principal {
-        background: url("./assets/images/background/fondo-principal-1200w.png") !important;
-        background-repeat: no-repeat !important;
-        height: 900px !important;
-        width: 1200px !important;
-    }
+  #bg-principal {
+    background: url("./assets/images/background/fondo-principal-1200w.png") !important;
+    background-repeat: no-repeat !important;
+    height: 900px !important;
+    width: 1200px !important;
+  }
 
-    .img-icon {
-        height: 150px !important;
-    }
+  .img-icon {
+    height: 150px !important;
+  }
 }
 
 /* Imagen utilizada en pantallas de anchura 1400 px y superior */
 @media (min-width: 1400px) {
-    #bg-principal {
-        background: url("./assets/images/background/fondo-principal-1400w.png") !important;
-        background-repeat: no-repeat !important;
-        height: 900px !important;
-        width: 1400px !important;
-    }
+  #bg-principal {
+    background: url("./assets/images/background/fondo-principal-1400w.png") !important;
+    background-repeat: no-repeat !important;
+    height: 900px !important;
+    width: 1400px !important;
+  }
 
-    .img-icon {
-        height: 200px !important;
-    }
+  .img-icon {
+    height: 200px !important;
+  }
 }
 
 /* Imagen utilizada en pantallas de anchura 1600 px y superior */
 @media (min-width: 1600px) {
-    #bg-principal {
-        background: url("./assets/images/background/fondo-principal-1600w.png") !important;
-        background-repeat: no-repeat !important;
-        height: 1200px !important;
-        width: 1600px !important;
-    }
-    .img-icon {
-        height: 200px !important;
-    }
+  #bg-principal {
+    background: url("./assets/images/background/fondo-principal-1600w.png") !important;
+    background-repeat: no-repeat !important;
+    height: 1200px !important;
+    width: 1600px !important;
+  }
+  .img-icon {
+    height: 200px !important;
+  }
 }
 
 .pointer {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .w150 {
-    width: 150px;
+  width: 150px;
 }
 
 .w70 {
-    width: 70px;
+  width: 70px;
 }
 
 .img-50 {
-    width: 50px;
+  width: 50px;
 }
 
 .img-100 {
-    width: 90px;
-    margin-left: 80%;
+  width: 90px;
+  margin-left: 80%;
 }
 
 .oculto {
-    display: none;
+  display: none;
 }
 
 .fondo-negro {
-    background-color: rgba(0,0,0,0.4);
-    position:fixed;
-    top: 0px;
-    left: 0px;
-    width: 100%;
-    height: 100%;
-    z-index: 9999;
+  background-color: rgba(0, 0, 0, 0.4);
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
 }

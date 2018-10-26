@@ -38,7 +38,8 @@ import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { AgmCoreModule } from '@agm/core';
 import { MapaComponent } from './mapa/mapa.component';
 import { GraficoBarrasComponent } from '../components/grafico-dona/grafico-barras.component';
-
+import { ModificarObservacionComponent } from './observaciones-preventivas/modificar-observacion.component';
+import { FormularioComponent } from './observaciones-preventivas/formulario.component';
 
 
 @NgModule({
@@ -56,7 +57,9 @@ import { GraficoBarrasComponent } from '../components/grafico-dona/grafico-barra
         ObservacionComponent,
         GoogleMapsComponent,
         MapaComponent,
-        GraficoBarrasComponent
+        GraficoBarrasComponent,
+        ModificarObservacionComponent,
+        FormularioComponent
     ],
     exports: [
         PagesComponent,
