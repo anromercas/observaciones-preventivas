@@ -15,7 +15,6 @@ import { PipesModule } from '../pipes/pipes.module';
 
 // Componentes
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { SdrComponent } from './sdr/sdr.component';
 import { PagesComponent } from './pages.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProfileComponent } from './profile/profile.component';
@@ -40,13 +39,14 @@ import { MapaComponent } from './mapa/mapa.component';
 import { GraficoBarrasComponent } from '../components/grafico-dona/grafico-barras.component';
 import { ModificarObservacionComponent } from './observaciones-preventivas/modificar-observacion.component';
 import { FormularioComponent } from './observaciones-preventivas/formulario.component';
+import { UsuariosMapaComponent } from './usuarios/usuarios-mapa.component';
+import { MiniFormacionComponent } from './observaciones-preventivas/mini-formacion.component';
 
 
 @NgModule({
     declarations: [
         PagesComponent,
         DashboardComponent,
-        SdrComponent,
         ProfileComponent,
         UsuariosComponent,
         ModalUploadComponent,
@@ -59,12 +59,13 @@ import { FormularioComponent } from './observaciones-preventivas/formulario.comp
         MapaComponent,
         GraficoBarrasComponent,
         ModificarObservacionComponent,
-        FormularioComponent
+        FormularioComponent,
+        UsuariosMapaComponent,
+        MiniFormacionComponent
     ],
     exports: [
         PagesComponent,
-        DashboardComponent,
-        SdrComponent,
+        DashboardComponent
     ],
     imports: [
         SharedModule,
@@ -81,7 +82,8 @@ import { FormularioComponent } from './observaciones-preventivas/formulario.comp
             useFactory: adapterFactory
         }),
         AgmCoreModule.forRoot({
-            apiKey: 'AIzaSyCzVxJimwuNE-2EYMnp4IUUh0skkgVOFic'
+            apiKey: 'AIzaSyCzVxJimwuNE-2EYMnp4IUUh0skkgVOFic',
+            libraries: ['places']
           })
     ],
     providers: [

@@ -7,7 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FormularioComponent implements OnInit {
 
-  seleccionado: boolean[] = [false, false, false, false, false];
+  seleccionado: boolean[] = [false, false, false, false, false, false];
+  epis: boolean[] = [false, false, false, false, false, false, false, false, false];
+
 
   constructor() { }
 

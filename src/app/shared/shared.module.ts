@@ -11,6 +11,7 @@ import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
 import { HeaderComponent } from './header/header.component';
 import { NofoundpageComponent } from './nofoundpage/nofoundpage.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { BarraAccionesComponent } from './barra-acciones/barra-acciones.component';
 
 
 @NgModule({
@@ -23,13 +24,15 @@ import { SidebarComponent } from './sidebar/sidebar.component';
        BreadcrumbsComponent,
        HeaderComponent,
        NofoundpageComponent,
-       SidebarComponent
+       SidebarComponent,
+       BarraAccionesComponent
     ],
     exports: [
        BreadcrumbsComponent,
        HeaderComponent,
        NofoundpageComponent,
-       SidebarComponent
+       SidebarComponent,
+       BarraAccionesComponent
     ]
 })
 

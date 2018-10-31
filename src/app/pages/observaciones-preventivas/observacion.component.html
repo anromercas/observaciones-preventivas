@@ -1,3 +1,11 @@
+<div class="row">
+    <div class="col-sm-12 col-md-12 col-lg-12 ">
+        <app-barra-acciones></app-barra-acciones>
+
+    </div>
+</div>
+<br>
+
 <!-- 
 =====================================================================
 formulario Creación Observacion preventiva
@@ -51,7 +59,7 @@ formulario Creación Observacion preventiva
                         <label for="fecha">fecha</label>
                         <div class="input-group date">
 
-                            <input formControlName="fecha" type="date" name="fecha" class="form-control" [value]="fecha | date:'dd/MM/yyyy'">
+                            <input formControlName="fecha" type="date" name="fecha" class="form-control" [value]="fechaHoy | date:'dd/MM/yyyy'">
 
                             <!-- <span class="input-group-addon"><i class="icon-calender"></i></span> -->
                         </div>
@@ -85,70 +93,69 @@ LISTADO
 -->
 
 <div class="row animated bounceInRight" *ngIf="cargando">
-        <div class="col">
-            <div class="alert alert-warning text-center">
-                <strong>Cargando</strong>
-                <br>
-                <i class="fa fa-refresh fa-spin fa-2x"></i>
-                <br>
-                <span>Espere por favor</span>
-            </div>
+    <div class="col">
+        <div class="alert alert-warning text-center">
+            <strong>Cargando</strong>
+            <br>
+            <i class="fa fa-refresh fa-spin fa-2x"></i>
+            <br>
+            <span>Espere por favor</span>
         </div>
     </div>
-    
-    <div class="row animated fadeIn" *ngIf="!cargando">
-        <div class="col">
-            <div class="card">
-                <div class="card-body">
-                    <h1 class="card-title">Tareas Programadas</h1>
-                    <h3 class="card-subtitle">Total tareas ( <small> {{ totalRegistros }} </small> ) </h3>
-    
-                    <table class="table table-hover table-striped table-responsive">
-                        <thead>
-                            <tr>
-                                <th>Fecha</th>
-                                <!-- <th>Estado</th> -->
-                                <th>Usuario Asigando</th>
-                                <th>Formulario</th>
-                                <th>Zona</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let observacion of observaciones">
-                                <td> {{ observacion.fecha | date:'dd/MM/yyyy' }} </td>
-                                <!-- <td class="badge badge-danger"> Caducada </td> -->
-                                <td> {{ observacion.usuario.nombre + ' ' +
-                                    observacion.usuario.apellido + ' ' +
-                                    observacion.usuario.segundoapellido }} </td>
-                                <td> {{ observacion.formulario }} </td>
-                                <td> {{ observacion.zona }} </td>
-                                <td>
-                                    <button (click)="borrarObservacion( observacion )" type="submit" class="btn btn-danger"
-                                        style="margin: 10px">
-                                        <i class="fa fa-trash"> Borrar</i>
-                                    </button>
-    
-                                    <button [routerLink]="['/observacion/', observacion._id ]" class="btn btn-warning"
-                                        style="margin: 10px">
-                                        <i class="fa fa-edit"> Editar</i>
-                                    </button>
-    
-                                    <!--            <button (click)="validarObservacion( observacionPendienteRealizar )" type="submit"
+</div>
+
+<div class="row animated fadeIn" *ngIf="!cargando">
+    <div class="col">
+        <div class="card">
+            <div class="card-body">
+                <h1 class="card-title">Tareas Programadas</h1>
+                <h3 class="card-subtitle">Total tareas ( <small> {{ totalRegistros }} </small> ) </h3>
+
+                <table class="table table-hover table-striped table-responsive">
+                    <thead>
+                        <tr>
+                            <th>Fecha</th>
+                            <!-- <th>Estado</th> -->
+                            <th>Usuario Asigando</th>
+                            <th>Formulario</th>
+                            <th>Zona</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let observacion of observaciones">
+                            <td> {{ observacion.fecha | date:'dd/MM/yyyy' }} </td>
+                            <!-- <td class="badge badge-danger"> Caducada </td> -->
+                            <td> {{ observacion.usuario.nombre + ' ' + observacion.usuario.apellido + ' ' +
+                                observacion.usuario.segundoapellido }} </td>
+                            <td> {{ observacion.formulario }} </td>
+                            <td> {{ observacion.zona }} </td>
+                            <td>
+                                <button (click)="borrarObservacion( observacion )" type="submit" class="btn btn-danger"
+                                    style="margin: 10px">
+                                    <i class="fa fa-trash"> Borrar</i>
+                                </button>
+
+                                <button [routerLink]="['/observacion/', observacion._id ]" class="btn btn-warning"
+                                    style="margin: 10px">
+                                    <i class="fa fa-edit"> Editar</i>
+                                </button>
+
+                                <!--            <button (click)="validarObservacion( observacionPendienteRealizar )" type="submit"
                                         class="btn btn-success" style="margin: 10px">
                                         <i class="fa fa-check"></i>
                                     </button> -->
-    
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <button (click)="cambiarDesde(-5, 'Pendiente Realizar')" class="btn btn-secondary">Anteriores</button>
-                    <button (click)="cambiarDesde(5, 'Pendiente Realizar')" class="btn btn-secondary">Siguientes</button>
-                </div>
+
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <button (click)="cambiarDesde(-5, 'Pendiente Realizar')" class="btn btn-secondary">Anteriores</button>
+                <button (click)="cambiarDesde(5, 'Pendiente Realizar')" class="btn btn-secondary">Siguientes</button>
             </div>
         </div>
     </div>
+</div>
 
 <!-- 
 =====================================================================
@@ -170,9 +177,11 @@ CALENDARIO
                                         <div class="calendar-events ui-draggable ui-draggable-handle" data-class="bg-info"
                                             style="position: relative;"><i class="fa fa-circle text-info"></i> HORNO</div>
                                         <div class="calendar-events ui-draggable ui-draggable-handle" data-class="bg-success"
-                                            style="position: relative;"><i class="fa fa-circle text-success"></i> BARRIDO</div>
+                                            style="position: relative;"><i class="fa fa-circle text-success"></i>
+                                            BARRIDO</div>
                                         <div class="calendar-events ui-draggable ui-draggable-handle" data-class="bg-danger"
-                                            style="position: relative;"><i class="fa fa-circle text-danger"></i> CALDERAS</div>
+                                            style="position: relative;"><i class="fa fa-circle text-danger"></i>
+                                            CALDERAS</div>
                                         <div class="calendar-events ui-draggable ui-draggable-handle" data-class="bg-warning"
                                             style="position: relative;"><i class="fa fa-circle text-warning"></i>RECAUCHUTADO</div>
                                     </div>
@@ -204,8 +213,9 @@ CALENDARIO
                                     </div>
                                     <div class="fc-right">
                                         <div class="fc-button-group"><button type="button" class="fc-month-button fc-button fc-state-default fc-corner-left fc-state-active">Mes</button><button
-                                                type="button" class="fc-agendaWeek-button fc-button fc-state-default">Semana</button><button
-                                                type="button" class="fc-agendaDay-button fc-button fc-state-default fc-corner-right">Dia</button></div>
+                                                type="button" class="fc-agendaWeek-button fc-button fc-state-default">Semana</button>
+                                            <button type="button" class="fc-agendaDay-button fc-button fc-state-default fc-corner-right">Dia</button>
+                                        </div>
                                     </div>
                                     <div class="fc-center">
                                         <h2>Octubre 2018</h2>
@@ -360,23 +370,27 @@ CALENDARIO
                                                                             <tbody>
                                                                                 <tr>
                                                                                     <td></td>
-                                                                                    <td class="fc-event-container"><a
-                                                                                            class="fc-day-grid-event fc-h-event fc-event fc-start fc-end bg-info fc-draggable">
+                                                                                    <td class="fc-event-container">
+                                                                                        <a class="fc-day-grid-event fc-h-event fc-event fc-start fc-end bg-info fc-draggable">
                                                                                             <div class="fc-content"><span
-                                                                                                    class="fc-time">11:00 </span>
+                                                                                                    class="fc-time">11:00
+                                                                                                </span>
                                                                                                 <span class="fc-title">HORNO</span></div>
-                                                                                        </a></td>
+                                                                                        </a>
+                                                                                    </td>
                                                                                     <td class="fc-event-container">
                                                                                         <a class="fc-day-grid-event fc-h-event fc-event fc-start fc-end bg-warning fc-draggable">
                                                                                             <div class="fc-content">
-                                                                                                <span class="fc-time">8:30 </span>
+                                                                                                <span class="fc-time">8:30
+                                                                                                </span>
                                                                                                 <span class="fc-title">RECAUCHUTADO</span></div>
                                                                                         </a>
                                                                                         <a class="fc-day-grid-event fc-h-event fc-event fc-start fc-end bg-success fc-draggable">
-                                                                                                <div class="fc-content">
-                                                                                                    <span class="fc-time">10:30 </span>
-                                                                                                    <span class="fc-title">BARRIDO</span></div>
-                                                                                            </a>
+                                                                                            <div class="fc-content">
+                                                                                                <span class="fc-time">10:30
+                                                                                                </span>
+                                                                                                <span class="fc-title">BARRIDO</span></div>
+                                                                                        </a>
                                                                                     </td>
                                                                                     <td></td>
                                                                                     <td></td>
@@ -444,14 +458,16 @@ CALENDARIO
                                                                                     <td class="fc-event-container">
                                                                                         <a class="fc-day-grid-event fc-h-event fc-event fc-start fc-end bg-info fc-draggable">
                                                                                             <div class="fc-content"><span
-                                                                                                    class="fc-time">10:30 </span>
+                                                                                                    class="fc-time">10:30
+                                                                                                </span>
                                                                                                 <span class="fc-title">HORNO</span></div>
                                                                                         </a>
                                                                                         <a class="fc-day-grid-event fc-h-event fc-event fc-start fc-end bg-danger fc-draggable">
-                                                                                                <div class="fc-content"><span
-                                                                                                        class="fc-time">12:00 </span>
-                                                                                                    <span class="fc-title">CALDERAS</span></div>
-                                                                                            </a>
+                                                                                            <div class="fc-content"><span
+                                                                                                    class="fc-time">12:00
+                                                                                                </span>
+                                                                                                <span class="fc-title">CALDERAS</span></div>
+                                                                                        </a>
                                                                                     </td>
                                                                                     <td></td>
                                                                                 </tr>
@@ -513,21 +529,25 @@ CALENDARIO
                                                                             <tbody>
                                                                                 <tr>
                                                                                     <td></td>
-                                                                                    <td class="fc-event-container"><a
-                                                                                            class="fc-day-grid-event fc-h-event fc-event fc-start fc-end bg-danger fc-draggable">
+                                                                                    <td class="fc-event-container">
+                                                                                        <a class="fc-day-grid-event fc-h-event fc-event fc-start fc-end bg-danger fc-draggable">
                                                                                             <div class="fc-content"><span
-                                                                                                    class="fc-time">9:45 </span>
+                                                                                                    class="fc-time">9:45
+                                                                                                </span>
                                                                                                 <span class="fc-title">CALDERAS</span></div>
-                                                                                        </a></td>
+                                                                                        </a>
+                                                                                    </td>
                                                                                     <td></td>
                                                                                     <td></td>
                                                                                     <td></td>
-                                                                                    <td class="fc-event-container"><a
-                                                                                            class="fc-day-grid-event fc-h-event fc-event fc-start fc-end bg-success fc-draggable">
+                                                                                    <td class="fc-event-container">
+                                                                                        <a class="fc-day-grid-event fc-h-event fc-event fc-start fc-end bg-success fc-draggable">
                                                                                             <div class="fc-content"><span
-                                                                                                    class="fc-time">6:25 </span>
+                                                                                                    class="fc-time">6:25
+                                                                                                </span>
                                                                                                 <span class="fc-title">BARRIDO</span></div>
-                                                                                        </a></td>
+                                                                                        </a>
+                                                                                    </td>
                                                                                     <td></td>
                                                                                 </tr>
                                                                             </tbody>
@@ -588,21 +608,25 @@ CALENDARIO
                                                                             <tbody>
                                                                                 <tr>
                                                                                     <td class="fc-event-container"
-                                                                                        rowspan="2"><a class="fc-day-grid-event fc-h-event fc-event fc-start fc-end bg-info fc-draggable">
+                                                                                        rowspan="2">
+                                                                                        <a class="fc-day-grid-event fc-h-event fc-event fc-start fc-end bg-info fc-draggable">
                                                                                             <div class="fc-content"><span
-                                                                                                    class="fc-time">9:30 </span>
+                                                                                                    class="fc-time">9:30
+                                                                                                </span>
                                                                                                 <span class="fc-title">HORNO</span></div>
-                                                                                        </a></td>
+                                                                                        </a>
+                                                                                    </td>
                                                                                     <td rowspan="2"></td>
                                                                                     <td rowspan="2"></td>
                                                                                     <td rowspan="2"></td>
-                                                                                    <td class="fc-event-container fc-limited"><a
-                                                                                            class="fc-day-grid-event fc-h-event fc-event fc-start fc-end bg-info fc-draggable">
+                                                                                    <td class="fc-event-container fc-limited">
+                                                                                        <a class="fc-day-grid-event fc-h-event fc-event fc-start fc-end bg-info fc-draggable">
                                                                                             <div class="fc-content"><span
                                                                                                     class="fc-time">8:17a</span>
                                                                                                 <span class="fc-title">This
                                                                                                     is your birthday</span></div>
-                                                                                        </a></td>
+                                                                                        </a>
+                                                                                    </td>
                                                                                     <td class="fc-more-cell" rowspan="1">
                                                                                         <div><a class="fc-more">+2 more</a></div>
                                                                                     </td>
@@ -610,13 +634,14 @@ CALENDARIO
                                                                                     <td rowspan="2"></td>
                                                                                 </tr>
                                                                                 <tr class="fc-limited">
-                                                                                    <td class="fc-event-container"><a
-                                                                                            class="fc-day-grid-event fc-h-event fc-event fc-start fc-end bg-danger fc-draggable">
+                                                                                    <td class="fc-event-container">
+                                                                                        <a class="fc-day-grid-event fc-h-event fc-event fc-start fc-end bg-danger fc-draggable">
                                                                                             <div class="fc-content"><span
                                                                                                     class="fc-time">1:51p</span>
                                                                                                 <span class="fc-title">Hanns
                                                                                                     birthday</span></div>
-                                                                                        </a></td>
+                                                                                        </a>
+                                                                                    </td>
                                                                                 </tr>
                                                                             </tbody>
                                                                         </table>

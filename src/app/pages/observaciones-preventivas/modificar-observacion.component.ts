@@ -74,7 +74,7 @@ export class ModificarObservacionComponent implements OnInit {
   cargarObservacion( id: string ) {
     this._observacionesService.obtenerObservacion(id).subscribe( (observacion: any) => {
       this.observacion = observacion;
-      this.forma.get('usuario').setValue(this.observacion.usuario._id);
+      this.forma.get('usuario').setValue(this.observacion.usuario);
       this.forma.get('formulario').setValue(this.observacion.formulario);
       this.forma.get('zona').setValue(this.observacion.zona);
       this.forma.get('fecha').setValue(this.observacion.fecha.split('T')[0]);

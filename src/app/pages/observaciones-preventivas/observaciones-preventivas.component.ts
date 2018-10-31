@@ -157,9 +157,12 @@ export class ObservacionesPreventivasComponent implements OnInit {
   }
 
   aprobarObservacion( observacion: ObservacionesPreventivas ) {
+    swal('Observacion Preventiva Validada', 'Se ha validado la observación: ' + observacion.formulario, 'success');
    // console.log('Tarea con id: ' + observacion._id + 'en zona: ' + observacion.zona + ' validada');
-    this._observacionesService.validarObservacion( observacion )
-                                .subscribe();
+    /* this._observacionesService.validarObservacion( observacion )
+                                .subscribe((resp)=> {
+
+                                }); */
   }
 
   crearObservacion() {
@@ -186,7 +189,6 @@ export class ObservacionesPreventivasComponent implements OnInit {
     this._usuarioService.cargarUsuarios( this.desde )
                         .subscribe( (resp: any) => {
                           this.totalUsuarios = resp.total;
-                          console.log(resp.usuarios);
                           this.usuarios = resp.usuarios;
                         });
   }
@@ -239,6 +241,18 @@ export class ObservacionesPreventivasComponent implements OnInit {
 
   recordatorio( nombre: string, apellido: string) {
     swal('Recordatorio enviado', 'recordatorio enviado al usuario: ' + nombre + ' ' + apellido, 'success');
+  }
+
+  rechazarObservacion( observacion: ObservacionesPreventivas ) {
+
+    swal({
+      title: '¿Está seguro?',
+      text: 'Está a punto de rechazar una observación preventiva',
+      icon: 'warning',
+      buttons: true,
+      dangerMode: true,
+    });
+
   }
 
   borrarObservacion( observacion: ObservacionesPreventivas ) {
