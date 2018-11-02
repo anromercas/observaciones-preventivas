@@ -41,6 +41,7 @@ import { ModificarObservacionComponent } from './observaciones-preventivas/modif
 import { FormularioComponent } from './observaciones-preventivas/formulario.component';
 import { UsuariosMapaComponent } from './usuarios/usuarios-mapa.component';
 import { MiniFormacionComponent } from './observaciones-preventivas/mini-formacion.component';
+import { ProcedimientosComponent } from './observaciones-preventivas/procedimientos.component';
 
 
 @NgModule({
@@ -61,7 +62,8 @@ import { MiniFormacionComponent } from './observaciones-preventivas/mini-formaci
         ModificarObservacionComponent,
         FormularioComponent,
         UsuariosMapaComponent,
-        MiniFormacionComponent
+        MiniFormacionComponent,
+        ProcedimientosComponent
     ],
     exports: [
         PagesComponent,

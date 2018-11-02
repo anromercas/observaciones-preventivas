@@ -12,6 +12,7 @@ import { MapaComponent } from './mapa/mapa.component';
 import { ModificarObservacionComponent } from './observaciones-preventivas/modificar-observacion.component';
 import { FormularioComponent } from './observaciones-preventivas/formulario.component';
 import { MiniFormacionComponent } from './observaciones-preventivas/mini-formacion.component';
+import { ProcedimientosComponent } from './observaciones-preventivas/procedimientos.component';
 
 const pagesRoutes: Routes = [
     {
@@ -33,6 +34,7 @@ const pagesRoutes: Routes = [
             { path: 'planifica/:id', component: ObservacionComponent, data: { titulo: 'Planifica' } },
             { path: 'formulario', component: FormularioComponent, data: { titulo: 'Formulario' } },
             { path: 'mini-formacion', component: MiniFormacionComponent, data: { titulo: 'Mini Formación' } },
+            { path: 'procedimientos', component: ProcedimientosComponent, data: { titulo: 'Procedimeintos' } },
             { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
         ]
     }
