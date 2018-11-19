@@ -9,6 +9,11 @@ import { PAGES_ROUTES } from './pages.routes';
 // Modulos
 import { SharedModule } from '../shared/shared.module';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { ChartsModule } from 'ng2-charts';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ComponentsModule } from '../components/components.module';
 
 // Pipes Module
 import { PipesModule } from '../pipes/pipes.module';
@@ -16,32 +21,23 @@ import { PipesModule } from '../pipes/pipes.module';
 // Componentes
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { PagesComponent } from './pages.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProfileComponent } from './profile/profile.component';
-import { CommonModule } from '@angular/common';
 import { UsuariosComponent } from './usuarios/usuarios.component';
-import { ModalUploadComponent } from '../components/modal-upload/modal-upload.component';
-import { ObservacionesPreventivasComponent } from './observaciones-preventivas/observaciones-preventivas.component';
+import { ObservacionesPreventivasComponent } from '../components/observaciones-preventivas/observaciones-preventivas.component';
 import { Graficas1Component } from './graficas1/graficas1.component';
-import { GoogleMapsComponent } from '../components/google-maps/google-maps.component';
-
-import { ChartsModule } from 'ng2-charts';
-import { GraficoDonaComponent } from '../components/grafico-dona/grafico-dona.component';
-import { MisObservacionesComponent } from './observaciones-preventivas/mis-observaciones.component';
-import { ObservacionComponent } from './observaciones-preventivas/observacion.component';
-
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { CalendarModule, DateAdapter } from 'angular-calendar';
-import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
-
+import { MisObservacionesComponent } from '../components/observaciones-preventivas/mis-observaciones.component';
+import { ObservacionComponent } from '../components/observaciones-preventivas/observacion.component';
 import { AgmCoreModule } from '@agm/core';
 import { MapaComponent } from './mapa/mapa.component';
-import { GraficoBarrasComponent } from '../components/grafico-dona/grafico-barras.component';
-import { ModificarObservacionComponent } from './observaciones-preventivas/modificar-observacion.component';
-import { FormularioComponent } from './observaciones-preventivas/formulario.component';
+import { ModificarObservacionComponent } from '../components/observaciones-preventivas/modificar-observacion.component';
+import { FormularioComponent } from '../components/observaciones-preventivas/formulario.component';
 import { UsuariosMapaComponent } from './usuarios/usuarios-mapa.component';
-import { MiniFormacionComponent } from './observaciones-preventivas/mini-formacion.component';
-import { ProcedimientosComponent } from './observaciones-preventivas/procedimientos.component';
+import { MiniFormacionComponent } from '../components/observaciones-preventivas/mini-formacion.component';
+import { ProcedimientosComponent } from '../components/observaciones-preventivas/procedimientos.component';
+import { MaphilightModule } from 'ng-maphilight';
+
+
+
 
 
 @NgModule({
@@ -50,20 +46,20 @@ import { ProcedimientosComponent } from './observaciones-preventivas/procedimien
         DashboardComponent,
         ProfileComponent,
         UsuariosComponent,
-        ModalUploadComponent,
+   //     ModalUploadComponent,
         ObservacionesPreventivasComponent,
-        MisObservacionesComponent,
+   //     MisObservacionesComponent,
         Graficas1Component,
-        GraficoDonaComponent,
-        ObservacionComponent,
-        GoogleMapsComponent,
+   //     GraficoDonaComponent,
+   //     ObservacionComponent,
+   //     GoogleMapsComponent,
         MapaComponent,
-        GraficoBarrasComponent,
-        ModificarObservacionComponent,
-        FormularioComponent,
+   //     GraficoBarrasComponent,
+   //     ModificarObservacionComponent,
+   //     FormularioComponent,
         UsuariosMapaComponent,
-        MiniFormacionComponent,
-        ProcedimientosComponent
+   //     MiniFormacionComponent,
+   //     ProcedimientosComponent
     ],
     exports: [
         PagesComponent,
@@ -79,10 +75,7 @@ import { ProcedimientosComponent } from './observaciones-preventivas/procedimien
         NgSelectModule,
         ChartsModule,
         BrowserAnimationsModule,
-        CalendarModule.forRoot({
-            provide: DateAdapter,
-            useFactory: adapterFactory
-        }),
+        ComponentsModule,
         AgmCoreModule.forRoot({
             apiKey: 'AIzaSyCzVxJimwuNE-2EYMnp4IUUh0skkgVOFic',
             libraries: ['places']

@@ -27,6 +27,16 @@ export class UsuarioService {
      return (this.token.length > 5 ) ? true : false;
    }
 
+   esAdmin() {
+    this.usuario = JSON.parse( localStorage.getItem('usuario') );
+    if ( this.usuario.role === 'ADMIN_ROLE') {
+      return true;
+    } else {
+     // swal('Acceso denegado', 'debe iniciar sesión con un usuario con más privilegios', 'warning');
+      return false;
+    }
+   }
+
    cargarStorage() {
      if ( localStorage.getItem('token') ) {
        this.token = localStorage.getItem('token');
@@ -68,7 +78,7 @@ export class UsuarioService {
                     .map( (resp: any) => {
                       this.guardarStorage(resp.id, resp.token, resp.usuario);
 
-                      return true;
+                      return resp;
                     });
    }
 

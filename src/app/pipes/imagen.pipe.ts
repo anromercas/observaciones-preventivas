@@ -32,7 +32,11 @@ export class ImagenPipe implements PipeTransform {
       break;
 
       case 'parche':
-      url += '/parches/' + img;
+        url += '/parches/' + img;
+      break;
+
+      case 'procedimientos':
+        url += '/procedimientos/' + img;
       break;
 
       default:

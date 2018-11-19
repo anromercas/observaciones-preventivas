@@ -14,6 +14,14 @@ function init_plugins() {
     jQuery(document).on("click", ".mega-dropdown", function(e) {
       e.stopPropagation();
     });
+
+	$('img[usemap]').rwdImageMaps();
+	
+	$('area').on('click', function() {
+		alert($(this).attr('alt') + ' clicked');
+	});
+
+
     
     // ==============================================================
     // This is for the top header part and sidebar part

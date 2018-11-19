@@ -4,7 +4,9 @@
 
 /* angular-cli file: src/styles.css */
 
-@import "../node_modules/angular-calendar/css/angular-calendar.css";
+/* @import "../node_modules/angular-calendar/css/angular-calendar.css"; */
+
+ @import "../node_modules/fullcalendar/dist/fullcalendar.css"; */
 html,
 body {
   font-family: "Opens Sans", helvetica;
@@ -17,10 +19,23 @@ td {
   margin-top: 20px;
 }
 
-/* .check {
-    opacity: 0.5;
-    color: rgb(189, 48, 5);
-} */
+.flotante {
+  display:scroll;
+      position:fixed;
+      bottom:320px;
+      right:0px;
+}
+
+.area {
+  border:1px solid #000000;
+}
+
+#avatar[usemap] {
+  border: none;
+  height: auto;
+  max-width: 100%;
+  width: auto;
+}
 
 .check {
   content: url("./assets/images/icon/success.svg");
@@ -37,11 +52,12 @@ agm-map {
 }
 
 #bg-principal {
-  background-image: url("./assets/images/background/fondo-principal-768w.png") !important;
+  background-image: url("/assets/images/background/fondo-principal-768w.png") !important;
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: 100%;
 }
+
 
 /* Imagen utilizada en pantallas de anchura 480 px y superior */
 
@@ -52,6 +68,7 @@ agm-map {
     height: 360px !important;
     width: 480px !important;
   }
+  
   .img-icon {
     height: 50px !important;
   }

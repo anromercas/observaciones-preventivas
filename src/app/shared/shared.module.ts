@@ -12,6 +12,7 @@ import { HeaderComponent } from './header/header.component';
 import { NofoundpageComponent } from './nofoundpage/nofoundpage.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { BarraAccionesComponent } from './barra-acciones/barra-acciones.component';
+import { BarraUserAccionesComponent } from './barra-user-acciones/barra-user-acciones.component';
 
 
 @NgModule({
@@ -25,14 +26,16 @@ import { BarraAccionesComponent } from './barra-acciones/barra-acciones.componen
        HeaderComponent,
        NofoundpageComponent,
        SidebarComponent,
-       BarraAccionesComponent
+       BarraAccionesComponent,
+       BarraUserAccionesComponent
     ],
     exports: [
        BreadcrumbsComponent,
        HeaderComponent,
        NofoundpageComponent,
        SidebarComponent,
-       BarraAccionesComponent
+       BarraAccionesComponent,
+       BarraUserAccionesComponent
     ]
 })
 

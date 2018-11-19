@@ -38,7 +38,13 @@ export class LoginComponent implements OnInit {
     let usuario = new Usuario('null', 'null', 'null', forma.value.email, forma.value.password);
 
     this._usuarioService.login( usuario, forma.value.recuerdame )
-                        .subscribe( correcto => this.router.navigate(['/dashboard']));
+                        .subscribe( correcto => {
+                          if ( correcto.usuario.role === 'ADMIN_ROLE') {
+                            this.router.navigate(['/dashboard']);
+                          } else {
+                            this.router.navigate(['/dashboard-user']);
+                          }
+                        });
   }
 
 }
